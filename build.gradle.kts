@@ -32,7 +32,11 @@ dependencies {
 	implementation("org.mapstruct:mapstruct:1.5.3.Final")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.3.Final")
 
+	testImplementation("org.testcontainers:postgresql")
+	testImplementation("org.testcontainers:junit-jupiter")
+	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.postgresql:postgresql")
 }
 
 tasks.withType<Test> {

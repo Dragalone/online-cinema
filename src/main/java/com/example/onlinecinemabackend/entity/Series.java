@@ -5,10 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity(name = "series")
 @NoArgsConstructor
@@ -44,13 +41,16 @@ public class Series {
     @JoinTable(name="series_genre",
             joinColumns= @JoinColumn(name="series_id", referencedColumnName="id"),
             inverseJoinColumns=  @JoinColumn(name="genre_id", referencedColumnName="id"))
-    private List<Genre> genres = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Genre> genres = new HashSet<>();
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="series_actors",
             joinColumns= @JoinColumn(name="series_id", referencedColumnName="id"),
             inverseJoinColumns=  @JoinColumn(name="actor_id", referencedColumnName="id"))
-    private List<Actor> actors = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Actor> actors = new HashSet<>();
+
 
     @OneToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude

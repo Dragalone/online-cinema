@@ -8,5 +8,10 @@ services:
       - POSTGRES_USER=vladimir
       - POSTGRES_PASSWORD=vladimir
       - POSTGRES_DB=cinema_db
-    volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+  online-cinema-backend:
+    image: dragalone/online-cinema-backend:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres

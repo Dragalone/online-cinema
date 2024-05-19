@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @Entity(name = "actor")
@@ -34,11 +31,21 @@ public class Actor {
     @JoinTable(name="series_actors",
             joinColumns=  @JoinColumn(name="actor_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="series_id", referencedColumnName="id"))
-    private List<Series> series = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Series> seriesList = new HashSet<>();
+
+    public void addSeries(Series series) {
+        seriesList.add(series);
+    }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="film_actors",
             joinColumns=  @JoinColumn(name="actor_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="film_id", referencedColumnName="id"))
-    private List<Series> films = new ArrayList<>();
+    @ToString.Exclude
+    private Set<Film> films = new HashSet<>();
+
+    public void addFilm(Film film) {
+        films.add(film);
+    }
 }

@@ -40,4 +40,8 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Rating> ratings = new ArrayList<>();
+
+    public void addRating(Rating rating){
+        ratings.add(rating);
+    }
 }

@@ -39,4 +39,7 @@ public class Season {
     @ToString.Exclude
     private List<Episode> episodes = new ArrayList<>();
 
+    public void addEpisode(Episode episode){
+        episodes.add(episode);
+    }
 }

@@ -31,9 +31,17 @@ public class Director {
 
     @OneToMany(mappedBy = "director", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
-    private List<Series> series = new ArrayList<>();
+    private List<Series> seriesList = new ArrayList<>();
+
+    public void addSeries(Series series) {
+        seriesList.add(series);
+    }
 
     @OneToMany(mappedBy = "director", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Film> films = new ArrayList<>();
+
+    public void addFilm(Film film) {
+        films.add(film);
+    }
 }
