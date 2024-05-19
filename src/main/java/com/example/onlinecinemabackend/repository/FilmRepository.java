@@ -22,4 +22,7 @@ public interface FilmRepository extends JpaRepository<Film, UUID> {
 
     Page<Film> findAllByDirectorId(UUID directorId, Pageable pageable);
 
+    boolean existsByTitle(String title);
+
+
 }

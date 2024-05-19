@@ -14,4 +14,7 @@ public interface ActorRepository extends JpaRepository<Actor, UUID> {
     Page<Actor> findAllByName(String name, Pageable pageable);
 
     Optional<Actor> findByName(String name);
+
+    boolean existsByName(String name);
+
 }
