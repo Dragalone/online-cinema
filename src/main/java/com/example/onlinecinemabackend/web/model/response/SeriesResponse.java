@@ -23,5 +23,13 @@ public class SeriesResponse {
 
     private Date start_date;
 
+    private DirectorResponse director;
+
+    private List<GenreResponse> genres = new ArrayList<>();
+
+    private List<ActorResponse> actors = new ArrayList<>();
+
+    private List<RatingResponse> ratings = new ArrayList<>();
+
     private List<SeasonResponse> seasons = new ArrayList<>();
 }

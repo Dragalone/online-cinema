@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ActorService extends EntityService<Actor, UUID> {
-    Actor addActor(Actor actor, List<UUID> filmIds, List<UUID> seriesIds);
+
 
     Page<Actor> findAllByName(String name, Pageable pageable);
 

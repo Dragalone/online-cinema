@@ -27,6 +27,8 @@ public class BriefFilmResponse {
 
     private String resourceLink;
 
+    private String directorName;
+
     private Integer genresCount;
 
     private Integer actorsCount;

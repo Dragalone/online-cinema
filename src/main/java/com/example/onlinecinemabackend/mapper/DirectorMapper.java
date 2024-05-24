@@ -1,5 +1,11 @@
 package com.example.onlinecinemabackend.mapper;
 
+
+import com.example.onlinecinemabackend.entity.Director;
+
+import com.example.onlinecinemabackend.web.model.request.UpsertDirectorRequest;
+
+import com.example.onlinecinemabackend.web.model.response.DirectorResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
@@ -9,5 +15,7 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public interface DirectorMapper {
+    Director upsertRequestToDirector(UpsertDirectorRequest request);
 
+    DirectorResponse directorToResponse(Director director);
 }

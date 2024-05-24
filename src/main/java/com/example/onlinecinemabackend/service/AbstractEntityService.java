@@ -23,7 +23,7 @@ public abstract class AbstractEntityService<E, ID, R extends JpaRepository<E, ID
 
     @Override
     public E findById(ID id) {
-        log.info("Delete entity with ID: {}", id);
+        log.info("Find entity with ID: {}", id);
 
         return repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
@@ -52,6 +52,7 @@ public abstract class AbstractEntityService<E, ID, R extends JpaRepository<E, ID
 
     @Override
     public void deleteById(ID id) {
+        log.info("Delete entity with ID: {}", id);
         repository.deleteById(id);
     }
 

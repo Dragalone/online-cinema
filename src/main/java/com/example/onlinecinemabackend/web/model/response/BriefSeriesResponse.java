@@ -22,6 +22,14 @@ public class BriefSeriesResponse {
 
     private Date start_date;
 
-    private List<SeasonResponse> seasons = new ArrayList<>();
+    private String directorName;
 
+    private Integer genresCount;
+
+    private Integer actorsCount;
+
+    private Integer ratingsCount;
+
+    private Integer seasonsCount;
 }
+

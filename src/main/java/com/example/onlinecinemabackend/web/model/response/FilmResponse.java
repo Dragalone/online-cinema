@@ -23,9 +23,12 @@ public class FilmResponse {
 
     private Date release_date;
 
+
     private BigDecimal cost;
 
     private String resource_link;
+
+    private DirectorResponse director;
 
     private List<GenreResponse> genres = new ArrayList<>();
 
