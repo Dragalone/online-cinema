@@ -44,11 +44,6 @@ public class GenreServiceImpl extends AbstractEntityService<Genre, UUID, GenreRe
     }
 
     @Override
-    public Page<Genre> findAllByName(String name, Pageable pageable) {
-        return repository.findAllByName(name, pageable);
-    }
-
-    @Override
     public boolean existsByName(String name) {
         return repository.existsByName(name);
     }

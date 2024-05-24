@@ -10,8 +10,6 @@ import java.util.UUID;
 
 public interface GenreRepository extends JpaRepository<Genre, UUID> {
 
-    Page<Genre> findAllByName(String name, Pageable pageable);
-
     Optional<Genre> findByName(String name);
 
     boolean existsByName(String name);

@@ -10,6 +10,5 @@ import java.util.UUID;
 public interface GenreService extends EntityService<Genre, UUID> {
     Genre findByName(String name);
 
-    Page<Genre> findAllByName(String name, Pageable pageable);
     boolean existsByName(String name);
 }

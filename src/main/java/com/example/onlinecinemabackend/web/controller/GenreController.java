@@ -1,14 +1,20 @@
 package com.example.onlinecinemabackend.web.controller;
 
+
+import com.example.onlinecinemabackend.entity.Genre;
+
 import com.example.onlinecinemabackend.mapper.GenreMapper;
 import com.example.onlinecinemabackend.service.GenreService;
+import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+
 import com.example.onlinecinemabackend.web.model.response.GenreResponse;
+import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -29,4 +35,21 @@ public class GenreController {
     }
 
 
+    @GetMapping("/name")
+    public ResponseEntity<GenreResponse> getByName(@Valid PaginationRequest request, @RequestParam String name){
+        return  ResponseEntity.ok(
+                genreMapper.genreToResponse(genreService.findByName(name))
+        );
+    }
+    @GetMapping
+    public ResponseEntity<ModelListResponse<GenreResponse>> findAllGenres(@Valid PaginationRequest request){
+        Page<Genre> genres = genreService.findAll(request.pageRequest());
+
+        return  ResponseEntity.ok(
+                ModelListResponse.<GenreResponse>builder()
+                        .totalCount(genres.getTotalElements())
+                        .data(genres.stream().map(genreMapper::genreToResponse).toList())
+                        .build()
+        );
+    }
 }
