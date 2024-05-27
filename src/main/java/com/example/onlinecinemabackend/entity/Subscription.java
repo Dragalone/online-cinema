@@ -28,4 +28,5 @@ public class Subscription {
 
     @Column(precision = 9, scale = 2)
     private BigDecimal cost;
+
 }
