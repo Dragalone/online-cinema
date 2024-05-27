@@ -10,10 +10,10 @@ services:
       - POSTGRES_DB=cinema_db
     restart: always
   online-cinema-backend:
-#    image: dragalone/online-cinema-backend:latest
-    build:
-      context: ../
-      dockerfile: Dockerfile
+    image: dragalone/online-cinema-backend:latest
+#    build:
+#      context: ../
+#      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
