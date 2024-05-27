@@ -22,7 +22,7 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
 
     @Override
     protected User updateFields(User oldEntity, User newEntity) {
-        if (!Objects.equals(oldEntity.getName(), newEntity.getName()) && existsByUsername(newEntity.getName())) {
+        if (!Objects.equals(oldEntity.getName(), newEntity.getName()) && existsByName(newEntity.getName())) {
             throw new AlreadyExistsException(
                     MessageFormat.format("User with username {0} already exists!",  newEntity.getName())
             );
@@ -52,7 +52,7 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
     @Override
     public User findByEmail(String email) {
         return repository.findByEmail(email)
-                .orElseThrow(()-> new EntityNotFoundException(MessageFormat.format("User with email {0} not found!",email)));;
+                .orElseThrow(()-> new EntityNotFoundException(MessageFormat.format("User with email {0} not found!",email)));
     }
 
     @Override

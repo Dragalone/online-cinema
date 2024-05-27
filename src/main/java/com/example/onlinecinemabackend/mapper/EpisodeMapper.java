@@ -1,5 +1,11 @@
 package com.example.onlinecinemabackend.mapper;
 
+import com.example.onlinecinemabackend.entity.Episode;
+
+import com.example.onlinecinemabackend.web.model.request.UpsertEpisodeRequest;
+
+import com.example.onlinecinemabackend.web.model.response.EpisodeResponse;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
@@ -9,4 +15,9 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
 public interface EpisodeMapper {
+
+    Episode upsertRequestToEpisode(UpsertEpisodeRequest request);
+
+    EpisodeResponse episodeToResponse(Episode episode);
+
 }
