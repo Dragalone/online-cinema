@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/film")
+@RequestMapping(path = "/api/v1/film",produces = "application/json")
 public class FilmController {
 
     private final FilmMapper filmMapper;

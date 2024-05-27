@@ -9,11 +9,15 @@ import com.example.onlinecinemabackend.repository.UserRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.UUID;
 
+@Service
+@Slf4j
 public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepository> implements UserService {
 
     public UserServiceImpl(UserRepository repository) {

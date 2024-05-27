@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/actor")
+@RequestMapping(path = "/api/v1/actor",produces = "application/json")
 public class ActorController {
 
     private final ActorMapper actorMapper;
@@ -30,7 +30,7 @@ public class ActorController {
                 actorMapper.actorToResponse(actorService.findById(id))
         );
     }
-    @GetMapping
+    @GetMapping("/name/all")
     public ResponseEntity<ModelListResponse<ActorResponse>> getAllByName(@Valid PaginationRequest request, @RequestParam String name){
         Page<Actor> actors = actorService.findAllByName(name, request.pageRequest());
 
@@ -49,7 +49,7 @@ public class ActorController {
         );
     }
 
-    @GetMapping("/name/all")
+    @GetMapping
     public ResponseEntity<ModelListResponse<ActorResponse>> findAllActors(@Valid PaginationRequest request){
             Page<Actor> actors = actorService.findAll(request.pageRequest());
 

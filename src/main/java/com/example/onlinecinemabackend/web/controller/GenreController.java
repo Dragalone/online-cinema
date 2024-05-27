@@ -20,7 +20,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/genre")
+@RequestMapping(path = "/api/v1/genre",produces = "application/json")
 public class GenreController {
 
     private final GenreService genreService;

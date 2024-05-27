@@ -8,13 +8,16 @@ import com.example.onlinecinemabackend.repository.EpisodeRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.service.EpisodeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.UUID;
-
+@Service
+@Slf4j
 public class EpisodeServiceImpl extends AbstractEntityService<Episode, UUID, EpisodeRepository> implements EpisodeService {
     public EpisodeServiceImpl(EpisodeRepository repository) {
         super(repository);

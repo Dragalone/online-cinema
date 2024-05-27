@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/director")
+@RequestMapping(path = "/api/v1/director",produces = "application/json")
 public class DirectorController {
 
     private final DirectorService directorService;

@@ -7,9 +7,12 @@ import com.example.onlinecinemabackend.repository.SubscriptionRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.service.SubscriptionService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-
+@Service
+@Slf4j
 public class SubscriptionServiceImpl extends AbstractEntityService<Subscription, UUID, SubscriptionRepository> implements SubscriptionService {
 
 
