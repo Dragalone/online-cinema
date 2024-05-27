@@ -15,5 +15,10 @@ public interface FilmService extends EntityService<Film, UUID> {
 
     Film updateFilm(Film film, UUID id, List<UUID> actorsIds, List<UUID> genresIds, UUID directorId);
 
+//    Page<Film> findAllByActors_IdIn(Collection<UUID> actors_id, Pageable pageable);
+//    Page<Film> findAllByGenres_IdIn(Collection<UUID> genres_id, Pageable pageable);
+//
+//    Page<Film> findAllByDirectorId(UUID directorId, Pageable pageable);
+
     boolean existsByTitle(String title);
 }
