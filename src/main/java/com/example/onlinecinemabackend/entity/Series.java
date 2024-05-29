@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 @Entity(name = "series")
@@ -22,7 +23,7 @@ public class Series {
     @Column(nullable = false)
     private String title;
 
-    private Date release_date;
+    private Instant release_date;
 
     private String description;
 

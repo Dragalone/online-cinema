@@ -12,6 +12,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.org.checkerframework.checker.units.qual.A;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.UUID;
 
@@ -33,7 +34,7 @@ public class ActorRepositoryTest {
     public void givenNewActor_whenSave_thenSuccess(){
         Actor actor = new Actor();
         actor.setName("TestActor");
-        actor.setBirthdate(new GregorianCalendar(2023, Calendar.FEBRUARY, 11).getTime());
+        actor.setBirthdate(new GregorianCalendar(2023, Calendar.FEBRUARY, 11).toInstant());
         Actor insertedActor = actorRepository.save(actor);
         assertEquals(actor.getName(), insertedActor.getName());
         assertEquals(actor.getBirthdate(), insertedActor.getBirthdate());

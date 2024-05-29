@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,6 @@ public class UpsertSeasonRequest {
 
     private String description;
 
-    private Date start_date;
+    private Instant start_date;
 
 }

@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,10 +22,10 @@ public class Subscription {
     private UUID id;
 
     @Column(nullable = false)
-    private Date start_date;
+    private Instant start_date;
 
     @Column(nullable = false)
-    private Date end_date;
+    private Instant end_date;
 
     @Column(precision = 9, scale = 2)
     private BigDecimal cost;

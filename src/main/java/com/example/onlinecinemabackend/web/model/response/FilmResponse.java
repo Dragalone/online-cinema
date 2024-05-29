@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,8 +22,7 @@ public class FilmResponse {
 
     private String description;
 
-    private Date release_date;
-
+    private Instant release_date;
 
     private BigDecimal cost;
 

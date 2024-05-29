@@ -1,12 +1,14 @@
 package com.example.onlinecinemabackend.web.controller;
 
 
+import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.entity.Series;
 
 import com.example.onlinecinemabackend.mapper.SeriesMapper;
 
 import com.example.onlinecinemabackend.service.SeriesService;
 import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.model.response.FilmResponse;
 import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
 
 import com.example.onlinecinemabackend.web.model.response.SeriesResponse;
@@ -43,4 +45,22 @@ public class SeriesController {
                         .build()
         );
     }
+    @GetMapping
+    public ResponseEntity<ModelListResponse<SeriesResponse>> findAllFilms(@Valid PaginationRequest request){
+        Page<Series> series = seriesService.findAll(request.pageRequest());
+        return  ResponseEntity.ok(
+                ModelListResponse.<SeriesResponse>builder()
+                        .totalCount(series.getTotalElements())
+                        .data(series.stream().map(seriesMapper::seriesToResponse).toList())
+                        .build()
+        );
+    }
+    @GetMapping("/title")
+    public ResponseEntity<SeriesResponse> getByTitle(@RequestParam String title){
+        return  ResponseEntity.ok(
+                seriesMapper.seriesToResponse(seriesService.findByTitle(title))
+        );
+    }
+
+
 }

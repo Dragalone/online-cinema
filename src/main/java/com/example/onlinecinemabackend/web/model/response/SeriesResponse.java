@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ public class SeriesResponse {
 
     private String description;
 
-    private Date start_date;
+    private Instant start_date;
 
     private DirectorResponse director;
 
