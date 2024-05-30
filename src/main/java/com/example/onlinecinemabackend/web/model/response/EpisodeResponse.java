@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 @Data
@@ -16,7 +17,7 @@ public class EpisodeResponse {
 
     private String title;
 
-    private Date release_date;
+    private Instant release_date;
 
     private String description;
 

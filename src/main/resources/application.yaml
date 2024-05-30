@@ -16,3 +16,10 @@ spring:
 #        always
 server:
   port: 8080
+
+# SnapAdmin is not enabled by default
+snapadmin:
+  enabled: true
+  baseUrl: admin
+  modelsPackage: com.example.onlinecinemabackend.entity
+

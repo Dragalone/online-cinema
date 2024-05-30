@@ -35,7 +35,7 @@ public class DirectorRepositoryTest {
     public void givenNewDirector_whenSave_thenSuccess(){
         Director director = new Director();
         director.setName("Name1234");
-        director.setBirthdate(new GregorianCalendar(2024, Calendar.FEBRUARY, 11).getTime());
+        director.setBirthdate(new GregorianCalendar(2024, Calendar.FEBRUARY, 11).toInstant());
         director.setInformation("Lorem ipsum");
         Director insertedDirector = directorRepository.save(director);
         assertEquals(director.getName(), insertedDirector.getName());

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class Episode {
     @Column(nullable = false, length = 127)
     private String title;
 
-    private Date release_date;
+    private Instant release_date;
 
     @Column(length = 1000)
     private String description;

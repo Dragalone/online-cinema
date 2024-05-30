@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ public class Director {
     @Column(nullable = false, length = 127)
     private String name;
 
-    private Date birthdate;
+    private Instant birthdate;
 
     @Column(length = 1000)
     private String information;

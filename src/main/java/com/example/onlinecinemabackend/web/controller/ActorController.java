@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/v1/actor",produces = "application/json")
