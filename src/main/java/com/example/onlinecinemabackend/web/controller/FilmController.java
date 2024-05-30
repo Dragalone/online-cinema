@@ -4,9 +4,7 @@ package com.example.onlinecinemabackend.web.controller;
 import com.example.onlinecinemabackend.entity.Film;
 
 import com.example.onlinecinemabackend.mapper.FilmMapper;
-import com.example.onlinecinemabackend.repository.FilmRepository;
-import com.example.onlinecinemabackend.repository.FilmSpecification;
-import com.example.onlinecinemabackend.service.AbstractEntityService;
+
 import com.example.onlinecinemabackend.service.FilmService;
 import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
 import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
@@ -14,9 +12,9 @@ import com.example.onlinecinemabackend.web.model.response.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +30,6 @@ public class FilmController {
 
     private final FilmService filmService;
 
-    @Autowired
-    private FilmRepository filmRepository;
 
 
     @GetMapping("/{id}")
@@ -45,8 +41,7 @@ public class FilmController {
     @GetMapping("/filter")
     public ResponseEntity<ModelListResponse<FilmResponse>> filterBy(@Valid @RequestBody FilmFilterRequest request){
 
-        Page<Film> films = filmRepository.findAll(FilmSpecification.withFilter(request),
-                request.getPagination().pageRequest());
+        Page<Film> films = filmService.filterBy(request);
         return  ResponseEntity.ok(
                 ModelListResponse.<FilmResponse>builder()
                         .totalCount(films.getTotalElements())

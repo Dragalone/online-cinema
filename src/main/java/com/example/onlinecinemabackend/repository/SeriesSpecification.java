@@ -1,39 +1,35 @@
 package com.example.onlinecinemabackend.repository;
 
-import com.example.onlinecinemabackend.entity.Actor;
-import com.example.onlinecinemabackend.entity.Director;
-import com.example.onlinecinemabackend.entity.Film;
-import com.example.onlinecinemabackend.entity.Genre;
-import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
-import jakarta.persistence.criteria.CriteriaQuery;
+import com.example.onlinecinemabackend.entity.*;
+
+import com.example.onlinecinemabackend.web.model.request.SeriesFilterRequest;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.Set;
 
-public interface FilmSpecification {
-
-    static Specification<Film> withFilter(FilmFilterRequest filter){
+public interface SeriesSpecification {
+    static Specification<Series> withFilter(SeriesFilterRequest filter){
         return Specification.where(byTitle(filter.getTitle()))
                 .and(byGenreNames(filter.getGenreNames()))
                     .and(byActorsNames(filter.getActorNames())
                         .and(byDirectorName(filter.getDirectorName())));
     }
 
-    static Specification<Film> byTitle(String title){
+
+    static Specification<Series> byTitle(String title){
         return (root, query, criteriaBuilder) -> {
             if (!StringUtils.hasText(title)){
                 return null;
             }
-            return criteriaBuilder.equal(root.get(Film.Fields.title),title);
+            return criteriaBuilder.equal(root.get(Series.Fields.title),title);
         };
+
     }
 
-    static Specification<Film> byGenreNames(Set<String> genresNames){
+    static Specification<Series> byGenreNames(Set<String> genresNames){
         return (root, query, criteriaBuilder) -> {
             if (genresNames.isEmpty()){
                 return null;
@@ -44,7 +40,7 @@ public interface FilmSpecification {
 
     }
 
-    static Specification<Film> byActorsNames(Set<String> actorsNames){
+    static Specification<Series> byActorsNames(Set<String> actorsNames){
         return (root, query, criteriaBuilder) -> {
             if (actorsNames.isEmpty()){
                 return null;
@@ -55,14 +51,13 @@ public interface FilmSpecification {
 
     }
 
-    static Specification<Film> byDirectorName(String directorName){
+    static Specification<Series> byDirectorName(String directorName){
         return (root, query, criteriaBuilder) -> {
             if (!StringUtils.hasText(directorName)){
                 return null;
             }
-            return criteriaBuilder.equal(root.get(Film.Fields.director).get(Director.Fields.name),directorName);
+            return criteriaBuilder.equal(root.get(Series.Fields.director).get(Director.Fields.name),directorName);
         };
 
     }
-
 }

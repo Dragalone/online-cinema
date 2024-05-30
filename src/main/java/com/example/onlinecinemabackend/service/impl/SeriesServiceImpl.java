@@ -1,13 +1,16 @@
 package com.example.onlinecinemabackend.service.impl;
 
-import com.example.onlinecinemabackend.entity.Director;
+
 import com.example.onlinecinemabackend.entity.Series;
 import com.example.onlinecinemabackend.exception.EntityNotFoundException;
-import com.example.onlinecinemabackend.repository.DirectorRepository;
+
+import com.example.onlinecinemabackend.repository.SeriesSpecification;
 import com.example.onlinecinemabackend.repository.SeriesRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
-import com.example.onlinecinemabackend.service.DirectorService;
+
 import com.example.onlinecinemabackend.service.SeriesService;
+
+import com.example.onlinecinemabackend.web.model.request.SeriesFilterRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,7 +66,13 @@ public class SeriesServiceImpl extends AbstractEntityService<Series, UUID, Serie
         return repository.findByTitle(title)
                 .orElseThrow(()-> new EntityNotFoundException(MessageFormat.format("Series with title {0} not found!",title)));
     }
-
+    @Override
+    public Page<Series> filterBy(SeriesFilterRequest filter) {
+        return repository.findAll(
+                SeriesSpecification.withFilter(filter),
+                filter.getPagination().pageRequest()
+        );
+    }
     @Override
     public boolean existsByTitle(String title) {
         return repository.existsByTitle(title);

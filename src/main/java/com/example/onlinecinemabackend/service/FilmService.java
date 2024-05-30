@@ -2,6 +2,7 @@ package com.example.onlinecinemabackend.service;
 
 import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.entity.Genre;
+import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +20,8 @@ public interface FilmService extends EntityService<Film, UUID> {
 //    Page<Film> findAllByGenres_IdIn(Collection<UUID> genres_id, Pageable pageable);
 //
 //    Page<Film> findAllByDirectorId(UUID directorId, Pageable pageable);
+
+    Page<Film> filterBy(FilmFilterRequest filter);
 
     boolean existsByTitle(String title);
 }
