@@ -8,6 +8,8 @@ import com.example.onlinecinemabackend.repository.DirectorRepository;
 import com.example.onlinecinemabackend.repository.FilmRepository;
 import com.example.onlinecinemabackend.repository.GenreRepository;
 
+import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
+import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -103,6 +105,23 @@ public class FilmRepositoryTest {
         );
     }
 
-
+    @Test
+    public void whenFindAllWithFilter_thenReturnFilms(){
+        List<UUID> genresIds = new ArrayList<>();
+        genresIds.add(genreRepository.findByName("Name1").orElse(null).getId());
+        genresIds.add(genreRepository.findByName("Name2").orElse(null).getId());
+        PageRequest.of(0,2);
+        Set<String> genresNamesSet = new HashSet<>();
+        genresNamesSet.add("Name1");
+        FilmFilterRequest filter = new FilmFilterRequest(null,
+                genresNamesSet,null,null);
+        System.out.println(filmRepository.findAll(FilmSpecification.withFilter(filter),
+                PageRequest.of(0,2)));
+        assertFalse(filmRepository.
+                findAllByGenres_IdIn(genresIds,PageRequest.of(0,2))
+                .getContent()
+                .isEmpty()
+        );
+    }
 
 }
