@@ -20,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @CrossOrigin
@@ -50,8 +51,13 @@ public class SeriesController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<ModelListResponse<SeriesResponse>> filterBy(@Valid @RequestBody SeriesFilterRequest request){
-        Page<Series> series = seriesService.filterBy(request);
+    public ResponseEntity<ModelListResponse<SeriesResponse>> filterBy(@Valid PaginationRequest pageRequest,
+                                                                      @RequestParam String title,
+                                                                      @RequestParam Set<String> genres,
+                                                                      @RequestParam Set<String> actors,
+                                                                      @RequestParam String director) {
+        SeriesFilterRequest filter = new SeriesFilterRequest(pageRequest,title,genres,actors,director);
+        Page<Series> series = seriesService.filterBy(filter);
         return  ResponseEntity.ok(
                 ModelListResponse.<SeriesResponse>builder()
                         .totalCount(series.getTotalElements())
