@@ -39,7 +39,7 @@ public class FilmController {
         );
     }
 
-    @GetMapping("/filter")
+    @GetMapping
     public ResponseEntity<ModelListResponse<FilmResponse>> filterBy(@Valid PaginationRequest pageRequest,
                                                                     @RequestParam String title,
                                                                     @RequestParam Set<String> genres,
