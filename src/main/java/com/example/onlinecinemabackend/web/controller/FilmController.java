@@ -6,9 +6,9 @@ import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.mapper.FilmMapper;
 
 import com.example.onlinecinemabackend.service.FilmService;
-import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
-import com.example.onlinecinemabackend.web.model.response.*;
+import com.example.onlinecinemabackend.web.dto.request.FilmFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.response.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -32,13 +32,13 @@ public class FilmController {
     private final FilmService filmService;
 
 
-
     @GetMapping("/{id}")
     public ResponseEntity<FilmResponse> getById(@PathVariable UUID id){
         return  ResponseEntity.ok(
                 filmMapper.filmToResponse(filmService.findById(id))
         );
     }
+
     @GetMapping("/filter")
     public ResponseEntity<ModelListResponse<FilmResponse>> filterBy(@Valid PaginationRequest pageRequest,
                                                                     @RequestParam String title,
@@ -54,39 +54,5 @@ public class FilmController {
                         .build()
         );
     }
-    @GetMapping
-    public ResponseEntity<ModelListResponse<FilmResponse>> findAllFilms(@Valid PaginationRequest request){
-        Page<Film> films = filmService.findAll(request.pageRequest());
-        return  ResponseEntity.ok(
-                ModelListResponse.<FilmResponse>builder()
-                        .totalCount(films.getTotalElements())
-                        .data(films.stream().map(filmMapper::filmToResponse).toList())
-                        .build()
-        );
-    }
-
-
-    @GetMapping("/title/all")
-    public ResponseEntity<ModelListResponse<FilmResponse>> getAllByTitle(@Valid PaginationRequest request, @RequestParam String title){
-        Page<Film> films = filmService.findAllByTitle(title, request.pageRequest());
-
-        return  ResponseEntity.ok(
-                ModelListResponse.<FilmResponse>builder()
-                        .totalCount(films.getTotalElements())
-                        .data(films.stream().map(filmMapper::filmToResponse).toList())
-                        .build()
-        );
-    }
-
-    @GetMapping("/title")
-    public ResponseEntity<FilmResponse> getByTitle(@RequestParam String title){
-
-        return  ResponseEntity.ok(
-               filmMapper.filmToResponse(filmService.findByTitle(title))
-        );
-    }
-
-
-
 
 }

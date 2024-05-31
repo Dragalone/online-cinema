@@ -5,10 +5,10 @@ import com.example.onlinecinemabackend.entity.Genre;
 
 import com.example.onlinecinemabackend.mapper.GenreMapper;
 import com.example.onlinecinemabackend.service.GenreService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
-import com.example.onlinecinemabackend.web.model.response.GenreResponse;
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.response.GenreResponse;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

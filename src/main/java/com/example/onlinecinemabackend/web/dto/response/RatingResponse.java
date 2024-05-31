@@ -1,4 +1,4 @@
-package com.example.onlinecinemabackend.web.model.response;
+package com.example.onlinecinemabackend.web.dto.response;
 
 
 import lombok.AllArgsConstructor;

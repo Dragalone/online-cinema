@@ -4,10 +4,11 @@ import com.example.onlinecinemabackend.entity.Episode;
 
 import com.example.onlinecinemabackend.mapper.EpisodeMapper;
 import com.example.onlinecinemabackend.service.EpisodeService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
-import com.example.onlinecinemabackend.web.model.response.EpisodeResponse;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.response.DirectorResponse;
+import com.example.onlinecinemabackend.web.dto.response.EpisodeResponse;
 
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -43,4 +44,12 @@ public class EpisodeController {
                         .build()
         );
     }
+
+    @GetMapping("/title")
+    public ResponseEntity<EpisodeResponse> getByTitle(@RequestParam String title){
+        return  ResponseEntity.ok(
+                episodeMapper.episodeToResponse(episodeService.findByTitle(title))
+        );
+    }
+
 }

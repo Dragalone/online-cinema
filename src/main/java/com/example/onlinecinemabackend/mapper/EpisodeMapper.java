@@ -2,9 +2,9 @@ package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Episode;
 
-import com.example.onlinecinemabackend.web.model.request.UpsertEpisodeRequest;
+import com.example.onlinecinemabackend.web.dto.request.UpsertEpisodeRequest;
 
-import com.example.onlinecinemabackend.web.model.response.EpisodeResponse;
+import com.example.onlinecinemabackend.web.dto.response.EpisodeResponse;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

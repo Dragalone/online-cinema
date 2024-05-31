@@ -1,17 +1,16 @@
-package com.example.onlinecinemabackend.web.model.response;
+package com.example.onlinecinemabackend.web.dto.request;
 
-import com.example.onlinecinemabackend.entity.Season;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.UUID;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EpisodeResponse {
+public class UpsertEpisodeRequest {
 
     private UUID id;
 
@@ -22,5 +21,4 @@ public class EpisodeResponse {
     private String description;
 
     private String resource_link;
-
 }

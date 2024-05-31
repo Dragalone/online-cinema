@@ -3,9 +3,9 @@ package com.example.onlinecinemabackend.web.controller;
 import com.example.onlinecinemabackend.entity.Actor;
 import com.example.onlinecinemabackend.mapper.ActorMapper;
 import com.example.onlinecinemabackend.service.ActorService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
-import com.example.onlinecinemabackend.web.model.response.ActorResponse;
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.response.ActorResponse;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +43,6 @@ public class ActorController {
     }
     @GetMapping("/name")
     public ResponseEntity<ActorResponse> getByName(@RequestParam String name){
-
         return  ResponseEntity.ok(
                 actorMapper.actorToResponse(actorService.findByName(name))
         );
@@ -52,7 +51,6 @@ public class ActorController {
     @GetMapping
     public ResponseEntity<ModelListResponse<ActorResponse>> findAllActors(@Valid PaginationRequest request){
             Page<Actor> actors = actorService.findAll(request.pageRequest());
-
             return  ResponseEntity.ok(
                     ModelListResponse.<ActorResponse>builder()
                             .totalCount(actors.getTotalElements())

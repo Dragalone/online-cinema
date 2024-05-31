@@ -4,10 +4,10 @@ package com.example.onlinecinemabackend.web.controller;
 import com.example.onlinecinemabackend.entity.Rating;
 import com.example.onlinecinemabackend.mapper.RatingMapper;
 import com.example.onlinecinemabackend.service.RatingService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
-import com.example.onlinecinemabackend.web.model.response.RatingResponse;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.response.RatingResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -45,4 +45,35 @@ public class RatingController {
         );
     }
 
+    @GetMapping("/user-id")
+    public ResponseEntity<ModelListResponse<RatingResponse>> findAllByUser_Id(@Valid PaginationRequest request,@RequestParam UUID userId){
+        Page<Rating> ratings = ratingService.findAllByUser_Id(userId, request.pageRequest());
+        return  ResponseEntity.ok(
+                ModelListResponse.<RatingResponse>builder()
+                        .totalCount(ratings.getTotalElements())
+                        .data(ratings.stream().map(ratingMapper::ratingToResponse).toList())
+                        .build()
+        );
+    }
+    @GetMapping("/series-id")
+    public ResponseEntity<ModelListResponse<RatingResponse>> findAllBySeries_Id(@Valid PaginationRequest request,@RequestParam UUID seriesId){
+        Page<Rating> ratings = ratingService.findAllBySeries_Id(seriesId, request.pageRequest());
+        return  ResponseEntity.ok(
+                ModelListResponse.<RatingResponse>builder()
+                        .totalCount(ratings.getTotalElements())
+                        .data(ratings.stream().map(ratingMapper::ratingToResponse).toList())
+                        .build()
+        );
+    }
+
+    @GetMapping("/film-id")
+    public ResponseEntity<ModelListResponse<RatingResponse>> findAllByFilm_Id(@Valid PaginationRequest request,@RequestParam UUID filmId){
+        Page<Rating> ratings = ratingService.findAllByFilm_Id(filmId, request.pageRequest());
+        return  ResponseEntity.ok(
+                ModelListResponse.<RatingResponse>builder()
+                        .totalCount(ratings.getTotalElements())
+                        .data(ratings.stream().map(ratingMapper::ratingToResponse).toList())
+                        .build()
+        );
+    }
 }

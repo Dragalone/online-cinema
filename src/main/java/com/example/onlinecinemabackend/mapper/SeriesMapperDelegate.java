@@ -1,7 +1,7 @@
 package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Series;
-import com.example.onlinecinemabackend.web.model.response.SeriesResponse;
+import com.example.onlinecinemabackend.web.dto.response.SeriesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class SeriesMapperDelegate implements SeriesMapper{

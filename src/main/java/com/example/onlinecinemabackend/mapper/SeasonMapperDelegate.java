@@ -2,7 +2,7 @@ package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Season;
 
-import com.example.onlinecinemabackend.web.model.response.SeasonResponse;
+import com.example.onlinecinemabackend.web.dto.response.SeasonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class SeasonMapperDelegate implements SeasonMapper {

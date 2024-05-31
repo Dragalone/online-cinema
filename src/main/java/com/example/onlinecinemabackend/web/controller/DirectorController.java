@@ -4,11 +4,11 @@ package com.example.onlinecinemabackend.web.controller;
 import com.example.onlinecinemabackend.entity.Director;
 import com.example.onlinecinemabackend.mapper.DirectorMapper;
 import com.example.onlinecinemabackend.service.DirectorService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
-import com.example.onlinecinemabackend.web.model.response.DirectorResponse;
+import com.example.onlinecinemabackend.web.dto.response.DirectorResponse;
 
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.example.onlinecinemabackend.web.model.response;
+package com.example.onlinecinemabackend.web.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,14 +6,13 @@ import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BriefSeriesResponse {
+public class SeasonResponse {
 
     private UUID id;
 
@@ -23,14 +22,5 @@ public class BriefSeriesResponse {
 
     private Instant start_date;
 
-    private String directorName;
-
-    private Integer genresCount;
-
-    private Integer actorsCount;
-
-    private Integer ratingsCount;
-
-    private Integer seasonsCount;
+    private List<EpisodeResponse> episodes = new ArrayList<>();
 }
-

@@ -1,19 +1,16 @@
 package com.example.onlinecinemabackend.web.controller;
 
 
-import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.entity.Series;
 
 import com.example.onlinecinemabackend.mapper.SeriesMapper;
 
 import com.example.onlinecinemabackend.service.SeriesService;
-import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
-import com.example.onlinecinemabackend.web.model.request.SeriesFilterRequest;
-import com.example.onlinecinemabackend.web.model.response.FilmResponse;
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.SeriesFilterRequest;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 
-import com.example.onlinecinemabackend.web.model.response.SeriesResponse;
+import com.example.onlinecinemabackend.web.dto.response.SeriesResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,19 +35,8 @@ public class SeriesController {
                 seriesMapper.seriesToResponse(seriesService.findById(id))
         );
     }
-    @GetMapping("/title/all")
-    public ResponseEntity<ModelListResponse<SeriesResponse>> getAllByTitle(@Valid PaginationRequest request, @RequestParam String title){
-        Page<Series> series = seriesService.findAllByTitle(title, request.pageRequest());
 
-        return  ResponseEntity.ok(
-                ModelListResponse.<SeriesResponse>builder()
-                        .totalCount(series.getTotalElements())
-                        .data(series.stream().map(seriesMapper::seriesToResponse).toList())
-                        .build()
-        );
-    }
-
-    @GetMapping("/filter")
+    @GetMapping
     public ResponseEntity<ModelListResponse<SeriesResponse>> filterBy(@Valid PaginationRequest pageRequest,
                                                                       @RequestParam String title,
                                                                       @RequestParam Set<String> genres,
@@ -65,23 +51,5 @@ public class SeriesController {
                         .build()
         );
     }
-
-    @GetMapping
-    public ResponseEntity<ModelListResponse<SeriesResponse>> findAllFilms(@Valid PaginationRequest request){
-        Page<Series> series = seriesService.findAll(request.pageRequest());
-        return  ResponseEntity.ok(
-                ModelListResponse.<SeriesResponse>builder()
-                        .totalCount(series.getTotalElements())
-                        .data(series.stream().map(seriesMapper::seriesToResponse).toList())
-                        .build()
-        );
-    }
-    @GetMapping("/title")
-    public ResponseEntity<SeriesResponse> getByTitle(@RequestParam String title){
-        return  ResponseEntity.ok(
-                seriesMapper.seriesToResponse(seriesService.findByTitle(title))
-        );
-    }
-
 
 }

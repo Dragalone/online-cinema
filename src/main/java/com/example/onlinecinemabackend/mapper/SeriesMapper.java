@@ -1,11 +1,8 @@
 package com.example.onlinecinemabackend.mapper;
 
-import com.example.onlinecinemabackend.entity.Season;
 import com.example.onlinecinemabackend.entity.Series;
-import com.example.onlinecinemabackend.web.model.request.UpsertSeasonRequest;
-import com.example.onlinecinemabackend.web.model.request.UpsertSeriesRequest;
-import com.example.onlinecinemabackend.web.model.response.SeasonResponse;
-import com.example.onlinecinemabackend.web.model.response.SeriesResponse;
+import com.example.onlinecinemabackend.web.dto.request.UpsertSeriesRequest;
+import com.example.onlinecinemabackend.web.dto.response.SeriesResponse;
 import org.mapstruct.DecoratedWith;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;

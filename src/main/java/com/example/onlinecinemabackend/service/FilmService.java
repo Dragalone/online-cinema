@@ -1,8 +1,7 @@
 package com.example.onlinecinemabackend.service;
 
 import com.example.onlinecinemabackend.entity.Film;
-import com.example.onlinecinemabackend.entity.Genre;
-import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.FilmFilterRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

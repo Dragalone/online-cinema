@@ -2,7 +2,7 @@ package com.example.onlinecinemabackend.repository;
 
 import com.example.onlinecinemabackend.entity.*;
 
-import com.example.onlinecinemabackend.web.model.request.SeriesFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.SeriesFilterRequest;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.JoinType;
 import org.springframework.data.jpa.domain.Specification;

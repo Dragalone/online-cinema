@@ -1,15 +1,10 @@
-package com.example.onlinecinemabackend.web.model.request;
+package com.example.onlinecinemabackend.web.dto.request;
 
-import com.example.onlinecinemabackend.entity.Film;
-import com.example.onlinecinemabackend.entity.Series;
-import com.example.onlinecinemabackend.entity.User;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.UUID;
 

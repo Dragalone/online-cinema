@@ -1,15 +1,9 @@
 package com.example.onlinecinemabackend.repository;
 
-import com.example.onlinecinemabackend.entity.Actor;
 import com.example.onlinecinemabackend.entity.Director;
 import com.example.onlinecinemabackend.entity.Film;
-import com.example.onlinecinemabackend.repository.ActorRepository;
-import com.example.onlinecinemabackend.repository.DirectorRepository;
-import com.example.onlinecinemabackend.repository.FilmRepository;
-import com.example.onlinecinemabackend.repository.GenreRepository;
 
-import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.FilmFilterRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

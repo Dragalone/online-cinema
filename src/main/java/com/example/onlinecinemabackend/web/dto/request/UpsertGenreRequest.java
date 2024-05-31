@@ -1,4 +1,4 @@
-package com.example.onlinecinemabackend.web.model.request;
+package com.example.onlinecinemabackend.web.dto.request;
 
 
 import jakarta.validation.constraints.NotNull;
@@ -11,20 +11,11 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpsertUserRequest {
+public class UpsertGenreRequest {
 
     private UUID id;
 
     @NotNull
     private String name;
-
-    @NotNull
-    private String password;
-
-    @NotNull
-    private String email;
-
-    @NotNull
-    private String phone;
 
 }

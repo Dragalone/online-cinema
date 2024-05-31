@@ -4,15 +4,12 @@ import com.example.onlinecinemabackend.entity.Actor;
 import com.example.onlinecinemabackend.entity.Director;
 import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.entity.Genre;
-import com.example.onlinecinemabackend.web.model.request.FilmFilterRequest;
-import jakarta.persistence.criteria.CriteriaQuery;
+import com.example.onlinecinemabackend.web.dto.request.FilmFilterRequest;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.Set;
 
 public interface FilmSpecification {

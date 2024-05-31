@@ -1,6 +1,5 @@
 package com.example.onlinecinemabackend.entity;
 
-import com.example.onlinecinemabackend.web.model.response.ActorResponse;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;

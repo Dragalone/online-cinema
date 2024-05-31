@@ -6,10 +6,11 @@ import com.example.onlinecinemabackend.entity.Season;
 import com.example.onlinecinemabackend.mapper.SeasonMapper;
 
 import com.example.onlinecinemabackend.service.SeasonService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
-import com.example.onlinecinemabackend.web.model.response.ModelListResponse;
-import com.example.onlinecinemabackend.web.model.response.SeasonResponse;
+import com.example.onlinecinemabackend.web.dto.response.EpisodeResponse;
+import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
+import com.example.onlinecinemabackend.web.dto.response.SeasonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -37,7 +38,6 @@ public class SeasonController {
     @GetMapping("/title/all")
     public ResponseEntity<ModelListResponse<SeasonResponse>> getAllByTitle(@Valid PaginationRequest request, @RequestParam String title){
         Page<Season> seasons = seasonService.findAllByTitle(title, request.pageRequest());
-
         return  ResponseEntity.ok(
                 ModelListResponse.<SeasonResponse>builder()
                         .totalCount(seasons.getTotalElements())
@@ -45,5 +45,10 @@ public class SeasonController {
                         .build()
         );
     }
-
+    @GetMapping("/title")
+    public ResponseEntity<SeasonResponse> getByTitle(@RequestParam String title){
+        return  ResponseEntity.ok(
+                seasonMapper.seasonToResponse(seasonService.findByTitle(title))
+        );
+    }
 }

@@ -1,14 +1,10 @@
-package com.example.onlinecinemabackend.web.model.request;
-import com.example.onlinecinemabackend.entity.Genre;
+package com.example.onlinecinemabackend.web.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Data

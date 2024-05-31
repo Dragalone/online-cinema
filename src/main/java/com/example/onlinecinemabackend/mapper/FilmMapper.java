@@ -1,11 +1,10 @@
 package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Film;
-import com.example.onlinecinemabackend.web.model.request.UpsertFilmRequest;
-import com.example.onlinecinemabackend.web.model.response.BriefFilmResponse;
-import com.example.onlinecinemabackend.web.model.response.FilmResponse;
+import com.example.onlinecinemabackend.web.dto.request.UpsertFilmRequest;
+import com.example.onlinecinemabackend.web.dto.response.BriefFilmResponse;
+import com.example.onlinecinemabackend.web.dto.response.FilmResponse;
 import org.mapstruct.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @DecoratedWith(FilmMapperDelegate.class)
 @Mapper(

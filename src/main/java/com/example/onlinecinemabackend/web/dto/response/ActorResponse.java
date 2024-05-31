@@ -1,23 +1,22 @@
-package com.example.onlinecinemabackend.web.model.request;
+package com.example.onlinecinemabackend.web.dto.response;
 
-
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpsertGenreRequest {
+public class ActorResponse {
 
     private UUID id;
 
-    @NotNull
     private String name;
 
+    private Instant birthdate;
+
+    private String information;
 }

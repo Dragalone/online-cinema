@@ -3,7 +3,7 @@ package com.example.onlinecinemabackend.service;
 
 import com.example.onlinecinemabackend.entity.Series;
 
-import com.example.onlinecinemabackend.web.model.request.SeriesFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.SeriesFilterRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

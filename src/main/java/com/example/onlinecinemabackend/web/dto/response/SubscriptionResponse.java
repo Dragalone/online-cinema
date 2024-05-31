@@ -1,4 +1,6 @@
-package com.example.onlinecinemabackend.web.model.request;
+package com.example.onlinecinemabackend.web.dto.response;
+
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,13 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.Date;
 import java.util.UUID;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpsertSubscriptionRequest {
+public class SubscriptionResponse {
 
     private UUID id;
 

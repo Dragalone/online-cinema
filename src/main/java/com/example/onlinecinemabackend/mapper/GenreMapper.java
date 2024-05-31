@@ -3,9 +3,9 @@ package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Genre;
 
-import com.example.onlinecinemabackend.web.model.request.UpsertGenreRequest;
+import com.example.onlinecinemabackend.web.dto.request.UpsertGenreRequest;
 
-import com.example.onlinecinemabackend.web.model.response.GenreResponse;
+import com.example.onlinecinemabackend.web.dto.response.GenreResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;

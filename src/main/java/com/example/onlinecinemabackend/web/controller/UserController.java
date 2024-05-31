@@ -4,9 +4,9 @@ package com.example.onlinecinemabackend.web.controller;
 import com.example.onlinecinemabackend.mapper.UserMapper;
 
 import com.example.onlinecinemabackend.service.UserService;
-import com.example.onlinecinemabackend.web.model.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
-import com.example.onlinecinemabackend.web.model.response.UserResponse;
+import com.example.onlinecinemabackend.web.dto.response.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 

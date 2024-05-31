@@ -10,7 +10,7 @@ import com.example.onlinecinemabackend.service.AbstractEntityService;
 
 import com.example.onlinecinemabackend.service.SeriesService;
 
-import com.example.onlinecinemabackend.web.model.request.SeriesFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.SeriesFilterRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
