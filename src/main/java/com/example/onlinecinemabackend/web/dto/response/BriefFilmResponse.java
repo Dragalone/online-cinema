@@ -32,4 +32,6 @@ public class BriefFilmResponse {
     private Integer actorsCount;
 
     private Integer ratingsCount;
+
+    private Double averageRating;
 }

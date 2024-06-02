@@ -32,4 +32,6 @@ public class SeriesResponse {
     private List<RatingResponse> ratings = new ArrayList<>();
 
     private List<SeasonResponse> seasons = new ArrayList<>();
+
+    private Double averageRating;
 }

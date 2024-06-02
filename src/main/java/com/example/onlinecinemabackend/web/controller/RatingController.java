@@ -6,11 +6,14 @@ import com.example.onlinecinemabackend.mapper.RatingMapper;
 import com.example.onlinecinemabackend.service.RatingService;
 import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
+import com.example.onlinecinemabackend.web.dto.request.UpsertRatingRequest;
 import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 import com.example.onlinecinemabackend.web.dto.response.RatingResponse;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,5 +78,16 @@ public class RatingController {
                         .data(ratings.stream().map(ratingMapper::ratingToResponse).toList())
                         .build()
         );
+    }
+
+    @PostMapping
+    public ResponseEntity<RatingResponse> createPost(@RequestBody UpsertRatingRequest request,
+                                                     @RequestParam UUID userId,
+                                                     @Nullable @RequestParam UUID filmId,
+                                                     @Nullable @RequestParam UUID seriesId
+                                                    ){
+        Rating rating = ratingService.addRating(ratingMapper.upsertRequestToRating(request),userId,filmId,seriesId);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ratingMapper.ratingToResponse(rating));
     }
 }

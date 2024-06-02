@@ -37,6 +37,7 @@ public class Film {
     @JoinColumn(name = "director_id")
     private Director director;
 
+    private double average_rating;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="film_genre",
@@ -65,6 +66,7 @@ public class Film {
     private List<Rating> ratings = new ArrayList<>();
 
     public void addRating(Rating rating){
-        ratings.add(rating);
+        
+        rating.setFilm(this);
     }
 }

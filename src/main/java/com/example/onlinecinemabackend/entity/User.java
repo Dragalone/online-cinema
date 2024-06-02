@@ -46,6 +46,6 @@ public class User {
     private List<Rating> ratings = new ArrayList<>();
 
     public void addRating(Rating rating){
-        ratings.add(rating);
+        rating.setUser(this);
     }
 }

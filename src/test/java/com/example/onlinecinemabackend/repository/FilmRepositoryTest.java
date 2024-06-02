@@ -4,6 +4,7 @@ import com.example.onlinecinemabackend.entity.Director;
 import com.example.onlinecinemabackend.entity.Film;
 
 import com.example.onlinecinemabackend.web.dto.request.FilmFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -107,8 +108,7 @@ public class FilmRepositoryTest {
         PageRequest.of(0,2);
         Set<String> genresNamesSet = new HashSet<>();
         genresNamesSet.add("Name1");
-        FilmFilterRequest filter = new FilmFilterRequest(null,
-                genresNamesSet,null,null);
+        FilmFilterRequest filter = new FilmFilterRequest(new PaginationRequest(5,0),null,genresNamesSet,null,null);
         System.out.println(filmRepository.findAll(FilmSpecification.withFilter(filter),
                 PageRequest.of(0,2)));
         assertFalse(filmRepository.

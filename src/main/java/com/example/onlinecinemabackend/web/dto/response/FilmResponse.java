@@ -34,4 +34,6 @@ public class FilmResponse {
     private List<ActorResponse> actors = new ArrayList<>();
 
     private List<RatingResponse> ratings = new ArrayList<>();
+
+    private Double averageRating;
 }

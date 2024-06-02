@@ -29,5 +29,7 @@ public class BriefSeriesResponse {
     private Integer ratingsCount;
 
     private Integer seasonsCount;
+
+    private Double averageRating;
 }
 

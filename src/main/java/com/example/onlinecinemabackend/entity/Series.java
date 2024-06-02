@@ -23,6 +23,8 @@ public class Series {
     @Column(nullable = false)
     private String title;
 
+    private double average_rating;
+
     private Instant release_date;
 
     private String description;
@@ -56,4 +58,9 @@ public class Series {
     @OneToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Rating> ratings = new ArrayList<>();
+
+    public void addRating(Rating rating){
+
+        rating.setSeries(this);
+    }
 }
