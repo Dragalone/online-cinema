@@ -2,6 +2,7 @@ package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Series;
 import com.example.onlinecinemabackend.repository.RatingRepository;
+import com.example.onlinecinemabackend.service.RatingService;
 import com.example.onlinecinemabackend.web.dto.response.SeriesResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +27,7 @@ public abstract class SeriesMapperDelegate implements SeriesMapper{
     private RatingMapper ratingMapper;
 
     @Autowired
-    private RatingRepository ratingRepository;
+    private RatingService ratingService;
     @Override
     public SeriesResponse seriesToResponse(Series series){
         SeriesResponse response = delegate.seriesToResponse(series);
@@ -48,7 +49,7 @@ public abstract class SeriesMapperDelegate implements SeriesMapper{
         response.setSeasons(series.getSeasons().stream()
                 .map(it -> seasonMapper.seasonToResponse(it))
                 .toList());
-        response.setAverageRating(ratingRepository.averageSeriesRating(series.getId()));
+        response.setAverageRating(ratingService.averageSeriesRating(series.getId()));
         return response;
     }
 }

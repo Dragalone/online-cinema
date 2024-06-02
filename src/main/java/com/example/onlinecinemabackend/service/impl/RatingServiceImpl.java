@@ -59,6 +59,16 @@ public class RatingServiceImpl extends AbstractEntityService<Rating, UUID, Ratin
         return save(rating);
     }
 
+    @Override
+    public Double averageFilmRating(UUID filmId) {
+        return repository.averageFilmRating(filmId);
+    }
+
+    @Override
+    public Double averageSeriesRating(UUID seriesId) {
+        return repository.averageSeriesRating(seriesId);
+    }
+
 
     @Override
     protected Rating updateFields(Rating oldEntity, Rating newEntity) {
@@ -100,4 +110,6 @@ public class RatingServiceImpl extends AbstractEntityService<Rating, UUID, Ratin
     public Page<Rating> findAllBySeries_Id(UUID seriesId, Pageable pageable) {
         return repository.findAllBySeries_Id(seriesId,pageable);
     }
+
+
 }

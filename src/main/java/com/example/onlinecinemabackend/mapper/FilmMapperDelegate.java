@@ -2,6 +2,7 @@ package com.example.onlinecinemabackend.mapper;
 
 import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.repository.RatingRepository;
+import com.example.onlinecinemabackend.service.RatingService;
 import com.example.onlinecinemabackend.web.dto.response.BriefFilmResponse;
 import com.example.onlinecinemabackend.web.dto.response.FilmResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,14 @@ public abstract class FilmMapperDelegate  implements FilmMapper{
     private RatingMapper ratingMapper;
 
     @Autowired
-    private RatingRepository ratingRepository;
+    private RatingService ratingService;
     @Override
     public BriefFilmResponse filmToBriefResponse(Film film){
         BriefFilmResponse response = delegate.filmToBriefResponse(film);
         response.setGenresCount(film.getGenres().size());
         response.setActorsCount(film.getActors().size());
         response.setRatingsCount(film.getRatings().size());
-        response.setAverageRating(ratingRepository.averageFilmRating(film.getId()));
+        response.setAverageRating(ratingService.averageFilmRating(film.getId()));
         return response;
     }
 
@@ -49,7 +50,7 @@ public abstract class FilmMapperDelegate  implements FilmMapper{
         response.setRatings(film.getRatings().stream()
                 .map(it->ratingMapper.ratingToResponse(it))
                 .toList());
-        response.setAverageRating(ratingRepository.averageFilmRating(film.getId()));
+        response.setAverageRating(ratingService.averageFilmRating(film.getId()));
         return response;
     }
 
