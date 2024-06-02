@@ -18,10 +18,10 @@ public class UpsertFilmRequest {
 
     private String description;
 
-    private Instant release_date;
+    private Instant releaseDate;
 
     private BigDecimal cost;
 
-    private String resource_link;
+    private String resourceLink;
 
 }

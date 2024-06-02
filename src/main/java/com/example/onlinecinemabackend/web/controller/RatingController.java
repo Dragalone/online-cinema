@@ -81,7 +81,7 @@ public class RatingController {
     }
 
     @PostMapping
-    public ResponseEntity<RatingResponse> createPost(@RequestBody UpsertRatingRequest request,
+    public ResponseEntity<RatingResponse> createRating(@RequestBody UpsertRatingRequest request,
                                                      @RequestParam UUID userId,
                                                      @Nullable @RequestParam UUID filmId,
                                                      @Nullable @RequestParam UUID seriesId

@@ -15,9 +15,9 @@ public class UpsertSubscriptionRequest {
 
     private UUID id;
 
-    private Instant start_date;
+    private Instant startDate;
 
-    private Instant end_date;
+    private Instant endDate;
 
     private BigDecimal cost;
 }

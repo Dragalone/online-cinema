@@ -23,12 +23,12 @@ public class Film {
     @Column(nullable = false, length = 127)
     private String title;
 
-    private Instant release_date;
+    private Instant releaseDate;
 
     @Column(length = 1000)
     private String description;
 
-    private String resource_link;
+    private String resourceLink;
 
     @Column(precision = 9, scale = 2)
     private BigDecimal cost;
@@ -36,8 +36,6 @@ public class Film {
     @ManyToOne
     @JoinColumn(name = "director_id")
     private Director director;
-
-    private double average_rating;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name="film_genre",

@@ -6,6 +6,7 @@ import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.mapper.FilmMapper;
 
 import com.example.onlinecinemabackend.service.FilmService;
+import com.example.onlinecinemabackend.service.RatingService;
 import com.example.onlinecinemabackend.web.dto.request.FilmFilterRequest;
 import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 import com.example.onlinecinemabackend.web.dto.response.*;
@@ -31,6 +32,7 @@ public class FilmController {
 
     private final FilmService filmService;
 
+    private final RatingService ratingService;
 
     @GetMapping("/{id}")
     public ResponseEntity<FilmResponse> getById(@PathVariable UUID id){

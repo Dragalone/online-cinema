@@ -16,9 +16,9 @@ public class UpsertEpisodeRequest {
 
     private String title;
 
-    private Instant release_date;
+    private Instant releaseDate;
 
     private String description;
 
-    private String resource_link;
+    private String resourceLink;
 }

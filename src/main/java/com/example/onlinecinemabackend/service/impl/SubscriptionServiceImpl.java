@@ -25,11 +25,11 @@ public class SubscriptionServiceImpl extends AbstractEntityService<Subscription,
         if (newEntity.getCost() != null){
             oldEntity.setCost(newEntity.getCost());
         }
-        if (newEntity.getStart_date() != null){
-            oldEntity.setStart_date(newEntity.getStart_date());
+        if (newEntity.getStartDate() != null){
+            oldEntity.setStartDate(newEntity.getStartDate());
         }
-        if (newEntity.getEnd_date() != null){
-            oldEntity.setEnd_date(newEntity.getEnd_date());
+        if (newEntity.getEndDate() != null){
+            oldEntity.setEndDate(newEntity.getEndDate());
         }
         return oldEntity;
     }

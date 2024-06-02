@@ -21,11 +21,11 @@ public class FilmResponse {
 
     private String description;
 
-    private Instant release_date;
+    private Instant releaseDate;
 
     private BigDecimal cost;
 
-    private String resource_link;
+    private String resourceLink;
 
     private DirectorResponse director;
 

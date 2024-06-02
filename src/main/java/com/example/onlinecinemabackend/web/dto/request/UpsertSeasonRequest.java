@@ -21,6 +21,6 @@ public class UpsertSeasonRequest {
 
     private String description;
 
-    private Instant start_date;
+    private Instant releaseDate;
 
 }

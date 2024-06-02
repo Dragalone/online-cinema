@@ -18,7 +18,7 @@ public class BriefSeriesResponse {
 
     private String description;
 
-    private Instant start_date;
+    private Instant releaseDate;
 
     private String directorName;
 

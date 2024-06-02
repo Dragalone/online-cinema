@@ -29,7 +29,7 @@ public class Season {
     private String description;
 
     @Column(nullable = false)
-    private Instant start_date;
+    private Instant releaseDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")

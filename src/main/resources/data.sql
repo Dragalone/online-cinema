@@ -23,16 +23,16 @@ INSERT INTO cinema_schema.director(id,birthdate,information,"name") VALUES
                                                                         ('f7f39016-e209-41f5-9e49-eef23eff3a68','2024-02-01','Lorem ipsum dolor sit amet','Name1'),
                                                                         ('42a8e31d-aac5-4707-9955-6cbffc53ab13','2024-03-02','2Lorem ipsum dolor sit amet','Name2');
 
-INSERT INTO cinema_schema.film(id,"cost",description,"resource_link",release_date,title,director_id, average_rating) VALUES
-                                                                                                         ('659cdb4d-c174-40d6-a5e3-eecc46bed3cf',123,'Lorem ipsum dolor sit amet','path1','2024-02-01','Title1','f7f39016-e209-41f5-9e49-eef23eff3a68',5.0),
-                                                                                                         ('7b3d033d-bfd1-4d59-b4a9-893de91bf0d6',123,'Lorem ipsum dolor sit amet','path2','2024-05-05','Title2','42a8e31d-aac5-4707-9955-6cbffc53ab13',5.0),
-                                                                                                         ('77384c6c-f990-451f-a8bd-a67f10ef75b9',123,'Lorem ipsum dolor sit amet','path3','2024-03-06','Title3','42a8e31d-aac5-4707-9955-6cbffc53ab13',5.0),
-                                                                                                         ('15467cdf-e85a-4857-911f-334ccc948f4d',123,'Lorem ipsum dolor sit amet','path4','2024-01-02','Title4','f7f39016-e209-41f5-9e49-eef23eff3a68',5.0);
+INSERT INTO cinema_schema.film(id,"cost",description,"resource_link",release_date,title,director_id) VALUES
+                                                                                                         ('659cdb4d-c174-40d6-a5e3-eecc46bed3cf',123,'Lorem ipsum dolor sit amet','path1','2024-02-01','Title1','f7f39016-e209-41f5-9e49-eef23eff3a68'),
+                                                                                                         ('7b3d033d-bfd1-4d59-b4a9-893de91bf0d6',123,'Lorem ipsum dolor sit amet','path2','2024-05-05','Title2','42a8e31d-aac5-4707-9955-6cbffc53ab13'),
+                                                                                                         ('77384c6c-f990-451f-a8bd-a67f10ef75b9',123,'Lorem ipsum dolor sit amet','path3','2024-03-06','Title3','42a8e31d-aac5-4707-9955-6cbffc53ab13'),
+                                                                                                         ('15467cdf-e85a-4857-911f-334ccc948f4d',123,'Lorem ipsum dolor sit amet','path4','2024-01-02','Title4','f7f39016-e209-41f5-9e49-eef23eff3a68');
 
-INSERT INTO cinema_schema.series(id,"cost",description,release_date,title,director_id, average_rating) VALUES
-    ('e4f7e3dc-b18e-4690-bb64-2748b78ad7bb',150.00,'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','2024-02-01','title1','f7f39016-e209-41f5-9e49-eef23eff3a68',5.0);
+INSERT INTO cinema_schema.series(id,"cost",description,release_date,title,director_id) VALUES
+    ('e4f7e3dc-b18e-4690-bb64-2748b78ad7bb',150.00,'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','2024-02-01','title1','f7f39016-e209-41f5-9e49-eef23eff3a68');
 
-INSERT INTO cinema_schema.season(id,description,"title",start_date,series_id) VALUES
+INSERT INTO cinema_schema.season(id,description,"title",release_date,series_id) VALUES
                                                                                   ('74b67f02-f716-468c-a7f8-08615dd91e00','1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','Name1','2024-02-01','e4f7e3dc-b18e-4690-bb64-2748b78ad7bb'),
                                                                                   ('377a9d12-3ca7-4497-8ec7-5a57de79b5ac','2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','Name2','2024-03-01','e4f7e3dc-b18e-4690-bb64-2748b78ad7bb'),
                                                                                   ('f5e4efd1-67a2-4409-8a29-cd1a9f8c6dfd','3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.','Name3','2024-04-01','e4f7e3dc-b18e-4690-bb64-2748b78ad7bb');

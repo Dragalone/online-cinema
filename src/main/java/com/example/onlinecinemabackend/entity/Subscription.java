@@ -22,10 +22,10 @@ public class Subscription {
     private UUID id;
 
     @Column(nullable = false)
-    private Instant start_date;
+    private Instant startDate;
 
     @Column(nullable = false)
-    private Instant end_date;
+    private Instant endDate;
 
     @Column(precision = 9, scale = 2)
     private BigDecimal cost;

@@ -38,8 +38,8 @@ public class SeasonServiceImpl extends AbstractEntityService<Season, UUID, Seaso
         if (newEntity.getSeries() != null){
             oldEntity.setSeries(newEntity.getSeries());
         }
-        if (newEntity.getStart_date() != null){
-            oldEntity.setStart_date(newEntity.getStart_date());
+        if (newEntity.getReleaseDate() != null){
+            oldEntity.setReleaseDate(newEntity.getReleaseDate());
         }
         return oldEntity;
     }

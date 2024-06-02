@@ -19,7 +19,7 @@ public class UpsertSeriesRequest {
     @NotNull
     private String title;
 
-    private Instant release_date;
+    private Instant releaseDate;
 
     private String description;
 

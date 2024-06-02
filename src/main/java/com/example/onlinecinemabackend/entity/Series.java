@@ -23,9 +23,7 @@ public class Series {
     @Column(nullable = false)
     private String title;
 
-    private double average_rating;
-
-    private Instant release_date;
+    private Instant releaseDate;
 
     private String description;
 

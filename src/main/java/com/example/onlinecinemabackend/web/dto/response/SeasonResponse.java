@@ -20,7 +20,7 @@ public class SeasonResponse {
 
     private String description;
 
-    private Instant start_date;
+    private Instant releaseDate;
 
     private List<EpisodeResponse> episodes = new ArrayList<>();
 }

@@ -23,12 +23,12 @@ public class Episode {
     @Column(nullable = false, length = 127)
     private String title;
 
-    private Instant release_date;
+    private Instant releaseDate;
 
     @Column(length = 1000)
     private String description;
 
-    private String resource_link;
+    private String resourceLink;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id")

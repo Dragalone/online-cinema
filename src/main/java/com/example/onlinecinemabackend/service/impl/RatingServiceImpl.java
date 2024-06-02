@@ -52,42 +52,13 @@ public class RatingServiceImpl extends AbstractEntityService<Rating, UUID, Ratin
         author.addRating(rating);
         if (film != null) {
             film.addRating(rating);
-            filmService.update(filmId,film);
         }
         if (series != null){
             series.addRating(rating);
-            seriesService.update(seriesId,series);
         }
-        userService.update(userId,author);
         return save(rating);
     }
 
-    @Override
-    public Rating save(Rating entity){
-        log.info("Save entity: {}", entity);
-        if (entity.getFilm()!=null) {
-            Film updateFilm = filmService.findById(entity.getFilm().getId());
-            List<Rating> ratings = updateFilm.getRatings();
-            double ratingSum = 0;
-            for (var rating : ratings) {
-                ratingSum += rating.getRating();
-            }
-            updateFilm.setAverage_rating(ratingSum / ratings.size());
-            filmService.update(entity.getFilm().getId(), updateFilm);
-        }
-        if (entity.getSeries()!=null) {
-            Series updateSeries = seriesService.findById(entity.getSeries().getId());
-            List<Rating> ratings = updateSeries.getRatings();
-            double ratingSum = 0;
-            for(var rating : ratings){
-                ratingSum+= rating.getRating();
-            }
-            updateSeries.setAverage_rating(ratingSum/ratings.size());
-            seriesService.update(entity.getSeries().getId(),updateSeries);
-        }
-
-        return repository.save(entity);
-    }
 
     @Override
     protected Rating updateFields(Rating oldEntity, Rating newEntity) {
@@ -100,28 +71,12 @@ public class RatingServiceImpl extends AbstractEntityService<Rating, UUID, Ratin
         }
         if (newEntity.getFilm()!=null){
             oldEntity.setFilm(newEntity.getFilm());
-            Film updateFilm = filmService.findById(newEntity.getFilm().getId());
-            List<Rating> ratings = updateFilm.getRatings();
-            double ratingSum = 0;
-            for(var rating : ratings){
-                ratingSum+= rating.getRating();
-            }
-            updateFilm.setAverage_rating(ratingSum/ratings.size());
-            filmService.update(newEntity.getFilm().getId(),updateFilm);
         }
         if (newEntity.getUser()!=null){
             oldEntity.setUser(newEntity.getUser());
         }
         if (newEntity.getSeries()!=null){
             oldEntity.setSeries(newEntity.getSeries());
-            Series updateSeries = seriesService.findById(newEntity.getSeries().getId());
-            List<Rating> ratings = updateSeries.getRatings();
-            double ratingSum = 0;
-            for(var rating : ratings){
-                ratingSum+= rating.getRating();
-            }
-            updateSeries.setAverage_rating(ratingSum/ratings.size());
-            seriesService.update(newEntity.getSeries().getId(),updateSeries);
         }
         return oldEntity;
     }

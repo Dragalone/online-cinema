@@ -50,8 +50,8 @@ public class SeriesServiceImpl extends AbstractEntityService<Series, UUID, Serie
         if (newEntity.getRatings() != null){
             oldEntity.setRatings(newEntity.getRatings());
         }
-        if (newEntity.getRelease_date() != null){
-            oldEntity.setRelease_date(newEntity.getRelease_date());
+        if (newEntity.getReleaseDate() != null){
+            oldEntity.setReleaseDate(newEntity.getReleaseDate());
         }
         return oldEntity;
     }
