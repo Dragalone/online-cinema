@@ -34,8 +34,6 @@ dependencies {
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
 
-	implementation("tech.ailef:snap-admin:0.2.1")
-
 	testImplementation("org.testcontainers:postgresql")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
