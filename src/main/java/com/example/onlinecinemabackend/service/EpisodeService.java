@@ -10,7 +10,9 @@ public interface EpisodeService extends EntityService<Episode, UUID> {
 
     Page<Episode> findAllByTitle(String title, Pageable pageable);
 
-   Episode findByTitle(String title);
+    Episode findByTitle(String title);
+
+    Episode addEpisode(Episode episode, UUID seasonId);
 
     boolean existsByTitle(String title);
 

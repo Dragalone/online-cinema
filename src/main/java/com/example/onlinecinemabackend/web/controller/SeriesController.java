@@ -1,6 +1,7 @@
 package com.example.onlinecinemabackend.web.controller;
 
 
+import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.entity.Series;
 
 import com.example.onlinecinemabackend.mapper.SeriesMapper;
@@ -8,15 +9,20 @@ import com.example.onlinecinemabackend.mapper.SeriesMapper;
 import com.example.onlinecinemabackend.service.SeriesService;
 import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 import com.example.onlinecinemabackend.web.dto.request.SeriesFilterRequest;
+import com.example.onlinecinemabackend.web.dto.request.UpsertFilmRequest;
+import com.example.onlinecinemabackend.web.dto.request.UpsertSeriesRequest;
+import com.example.onlinecinemabackend.web.dto.response.FilmResponse;
 import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 
 import com.example.onlinecinemabackend.web.dto.response.SeriesResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -50,6 +56,17 @@ public class SeriesController {
                         .data(series.stream().map(seriesMapper::seriesToResponse).toList())
                         .build()
         );
+    }
+
+    @PostMapping
+    public ResponseEntity<SeriesResponse> createSeries(@RequestBody UpsertSeriesRequest request,
+                                                   @RequestParam List<UUID> genresIds,
+                                                   @RequestParam List<UUID> actorsIds,
+                                                   @RequestParam UUID directorId
+    ){
+        Series series = seriesService.addSeries(seriesMapper.upsertRequestToSeries(request),actorsIds,genresIds,directorId);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(seriesMapper.seriesToResponse(series));
     }
 
 }

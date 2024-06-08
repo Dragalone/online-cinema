@@ -1,12 +1,17 @@
 package com.example.onlinecinemabackend.service.impl;
 
 import com.example.onlinecinemabackend.entity.Director;
+import com.example.onlinecinemabackend.entity.Film;
+import com.example.onlinecinemabackend.entity.Series;
 import com.example.onlinecinemabackend.exception.AlreadyExistsException;
 import com.example.onlinecinemabackend.exception.EntityNotFoundException;
 import com.example.onlinecinemabackend.repository.DirectorRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
+import com.example.onlinecinemabackend.service.FilmService;
+import com.example.onlinecinemabackend.service.SeriesService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,13 +19,22 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
+
 @Service
 @Slf4j
 public class DirectorServiceImpl extends AbstractEntityService<Director, UUID, DirectorRepository> implements DirectorService {
-    public DirectorServiceImpl(DirectorRepository repository) {
+
+
+   private final FilmService filmService;
+
+   private final SeriesService seriesService;
+
+
+    public DirectorServiceImpl(DirectorRepository repository, @Lazy FilmService filmService,@Lazy SeriesService seriesService) {
         super(repository);
+        this.filmService = filmService;
+        this.seriesService = seriesService;
     }
 
 
@@ -55,6 +69,24 @@ public class DirectorServiceImpl extends AbstractEntityService<Director, UUID, D
     @Override
     public Page<Director> findAllByName(String name, Pageable pageable) {
         return repository.findAllByName(name,pageable);
+    }
+
+
+    @Transactional
+    @Override
+    public Director addDirector(Director director, List<UUID> filmsIds, List<UUID> seriesIds) {
+        List<Film> films = new ArrayList<>();
+        for(var filmId : filmsIds){
+            films.add(filmService.findById(filmId));
+        }
+        List<Series> series = new ArrayList<>();
+        for(var seriesId : seriesIds){
+            series.add(seriesService.findById(seriesId));
+        }
+
+        director.setFilms(films);
+        director.setSeriesList(series);
+        return save(director);
     }
 
     @Override

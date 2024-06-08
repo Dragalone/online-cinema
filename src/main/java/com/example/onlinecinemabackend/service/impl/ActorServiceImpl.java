@@ -1,13 +1,14 @@
 package com.example.onlinecinemabackend.service.impl;
 
-import com.example.onlinecinemabackend.entity.Actor;
-import com.example.onlinecinemabackend.entity.Film;
+import com.example.onlinecinemabackend.entity.*;
 import com.example.onlinecinemabackend.exception.AlreadyExistsException;
 import com.example.onlinecinemabackend.exception.EntityNotFoundException;
 import com.example.onlinecinemabackend.repository.ActorRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.ActorService;
 import com.example.onlinecinemabackend.service.FilmService;
+import com.example.onlinecinemabackend.service.SeriesService;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.bridge.Message;
 import org.springframework.context.annotation.Lazy;
@@ -18,10 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -29,10 +27,15 @@ public class ActorServiceImpl extends AbstractEntityService<Actor, UUID, ActorRe
 
 
 
-    //private final SeriesService seriesService;
-    public ActorServiceImpl(ActorRepository repository) {
+    private final SeriesService seriesService;
+    private final FilmService filmService;
+
+    public ActorServiceImpl(ActorRepository repository, @Lazy SeriesService seriesService, @Lazy FilmService filmService) {
         super(repository);
+        this.seriesService = seriesService;
+        this.filmService = filmService;
     }
+
 
 
 
@@ -58,7 +61,22 @@ public class ActorServiceImpl extends AbstractEntityService<Actor, UUID, ActorRe
         return oldEntity;
     }
 
+    @Override
+    @Transactional
+    public Actor addActor(Actor actor, List<UUID> filmsIds, List<UUID> seriesIds) {
+        Set<Film> films = new HashSet<>();
+        for(var filmId : filmsIds){
+            films.add(filmService.findById(filmId));
+        }
+        Set<Series> series = new HashSet<>();
+        for(var seriesId : seriesIds){
+            series.add(seriesService.findById(seriesId));
+        }
 
+        actor.setFilms(films);
+        actor.setSeriesList(series);
+        return save(actor);
+    }
 
     @Override
     public Page<Actor> findAllByName(String name, Pageable pageable) {

@@ -48,4 +48,9 @@ public class User {
     public void addRating(Rating rating){
         rating.setUser(this);
     }
+
+
+    public void addRole(RoleType role) {
+        getRoles().add(role);
+    }
 }

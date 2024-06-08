@@ -1,18 +1,24 @@
 package com.example.onlinecinemabackend.web.controller;
 
 
+import com.example.onlinecinemabackend.entity.RoleType;
+import com.example.onlinecinemabackend.entity.User;
+import com.example.onlinecinemabackend.exception.AlreadyExistsException;
 import com.example.onlinecinemabackend.mapper.UserMapper;
 
 import com.example.onlinecinemabackend.service.UserService;
 import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
+import com.example.onlinecinemabackend.web.dto.request.UpsertUserRequest;
 import com.example.onlinecinemabackend.web.dto.response.UserResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.MessageFormat;
 import java.util.UUID;
 
 @CrossOrigin
@@ -38,5 +44,20 @@ public class UserController {
         );
     }
 
+    @PostMapping
+    public ResponseEntity<UserResponse> createUser(@RequestBody UpsertUserRequest request, @RequestParam RoleType role) {
+        if (userService.existsByEmail(request.getEmail())) {
+            throw new AlreadyExistsException(MessageFormat.format("User with email {0} already exists!", request.getEmail()));
+        }
+        if (userService.existsByName(request.getName())) {
+            throw new AlreadyExistsException(MessageFormat.format("User with email {0} already exists!", request.getEmail()));
+        }
 
+
+        User newUser = userMapper.upsertRequestToUser(request);
+        newUser.addRole(role);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userMapper.userToResponse(userService.save(newUser)));
+    }
 }

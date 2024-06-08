@@ -1,6 +1,7 @@
 package com.example.onlinecinemabackend.service.impl;
 
 import com.example.onlinecinemabackend.entity.Actor;
+import com.example.onlinecinemabackend.entity.Director;
 import com.example.onlinecinemabackend.entity.Film;
 import com.example.onlinecinemabackend.entity.Genre;
 import com.example.onlinecinemabackend.exception.EntityNotFoundException;
@@ -79,8 +80,8 @@ public class FilmServiceImpl extends AbstractEntityService<Film, UUID, FilmRepos
         return repository.findAllByTitle(title,pageable);
     }
 
-    @Override
     @Transactional
+    @Override
     public Film updateFilm(Film film, UUID id, List<UUID> actorsIds, List<UUID> genresIds, UUID directorId) {
         Set<Actor> actors = new HashSet<>();
         Set<Genre> genres = new HashSet<>();
@@ -103,6 +104,23 @@ public class FilmServiceImpl extends AbstractEntityService<Film, UUID, FilmRepos
     }
 
     @Override
+    public Film addFilm(Film film, List<UUID> actorsIds, List<UUID> genresIds, UUID directorId) {
+        Set<Actor> actors = new HashSet<>();
+        for(var actorId : actorsIds){
+            actors.add(actorService.findById(actorId));
+        }
+        Set<Genre> genres = new HashSet<>();
+        for(var genreId : genresIds){
+            genres.add(genreService.findById(genreId));
+        }
+        Director director = directorService.findById(directorId);
+        film.setActors(actors);
+        film.setGenres(genres);
+        film.setDirector(director);
+        return save(film);
+    }
+
+    @Override
     public Page<Film> filterBy(FilmFilterRequest filter) {
         return repository.findAll(
                 FilmSpecification.withFilter(filter),
@@ -110,13 +128,6 @@ public class FilmServiceImpl extends AbstractEntityService<Film, UUID, FilmRepos
         );
     }
 
-    //    @Override
-//    @Transactional
-//    public Actor addActor(Actor actor, UUID filmId, UUID seriesId) {
-//        Film film = filmService.findById(filmId);
-//        film.addActor(actor);
-//        return save(actor);
-//    }
     @Override
     public boolean existsByTitle(String title) {
         return repository.existsByTitle(title);

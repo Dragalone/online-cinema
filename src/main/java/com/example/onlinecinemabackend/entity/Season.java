@@ -41,6 +41,6 @@ public class Season {
     private List<Episode> episodes = new ArrayList<>();
 
     public void addEpisode(Episode episode){
-        episodes.add(episode);
+        episode.setSeason(this);
     }
 }

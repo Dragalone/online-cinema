@@ -45,7 +45,7 @@ public class Film {
     private Set<Genre> genres = new HashSet<>();
 
     public void addGenre(Genre genre){
-        genres.add(genre);
+        genre.getFilms().add(this);
     }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -56,7 +56,7 @@ public class Film {
     private Set<Actor> actors = new HashSet<>();
 
     public void addActor(Actor actor){
-        actors.add(actor);
+        actor.getFilms().add(this);
     }
 
     @OneToMany(mappedBy = "film", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -64,7 +64,10 @@ public class Film {
     private List<Rating> ratings = new ArrayList<>();
 
     public void addRating(Rating rating){
-        
         rating.setFilm(this);
+    }
+
+    public void addDirector(Director director){
+        director.getFilms().add(this);
     }
 }

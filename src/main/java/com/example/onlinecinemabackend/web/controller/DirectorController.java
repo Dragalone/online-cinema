@@ -6,15 +6,19 @@ import com.example.onlinecinemabackend.mapper.DirectorMapper;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
 
+import com.example.onlinecinemabackend.web.dto.request.UpsertDirectorRequest;
 import com.example.onlinecinemabackend.web.dto.response.DirectorResponse;
 
 import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @CrossOrigin
@@ -65,6 +69,16 @@ public class DirectorController {
                         .data(directors.stream().map(directorMapper::directorToResponse).toList())
                         .build()
         );
+    }
+
+    @PostMapping
+    public ResponseEntity<DirectorResponse> createDirector(@RequestBody UpsertDirectorRequest request,
+                                                           @Nullable @RequestParam List<UUID> filmsIds,
+                                                           @Nullable @RequestParam List<UUID> seriesIds
+    ){
+           Director director = directorService.addDirector(directorMapper.upsertRequestToDirector(request), filmsIds, seriesIds);
+           return ResponseEntity.status(HttpStatus.CREATED)
+                .body(directorMapper.directorToResponse(director));
     }
 
 }

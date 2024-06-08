@@ -61,4 +61,20 @@ public class Series {
 
         rating.setSeries(this);
     }
+
+    public void addActor(Actor actor){
+        actor.getSeriesList().add(this);
+    }
+
+    public void addDirector(Director director){
+        director.getSeriesList().add(this);
+    }
+
+    public void addSeason(Season season){
+        season.setSeries(this);
+    }
+    public void addGenre(Genre genre){
+        genre.getSeriesList().add(this);
+    }
 }
+

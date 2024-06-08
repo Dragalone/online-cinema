@@ -2,16 +2,20 @@ package com.example.onlinecinemabackend.service.impl;
 
 import com.example.onlinecinemabackend.entity.Director;
 import com.example.onlinecinemabackend.entity.Season;
+import com.example.onlinecinemabackend.entity.Series;
 import com.example.onlinecinemabackend.exception.EntityNotFoundException;
 import com.example.onlinecinemabackend.repository.DirectorRepository;
 import com.example.onlinecinemabackend.repository.SeasonRepository;
 import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.service.SeasonService;
+import com.example.onlinecinemabackend.service.SeriesService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
@@ -20,8 +24,11 @@ import java.util.UUID;
 @Slf4j
 public class SeasonServiceImpl extends AbstractEntityService<Season, UUID, SeasonRepository> implements SeasonService {
 
-    public SeasonServiceImpl(SeasonRepository repository) {
+    private final SeriesService seriesService;
+
+    public SeasonServiceImpl(SeasonRepository repository,@Lazy SeriesService seriesService) {
         super(repository);
+        this.seriesService = seriesService;
     }
 
     @Override
@@ -53,6 +60,13 @@ public class SeasonServiceImpl extends AbstractEntityService<Season, UUID, Seaso
     public Season findByTitle(String title) {
         return repository.findByTitle(title)
                 .orElseThrow(()-> new EntityNotFoundException(MessageFormat.format("Season with title {0} not found!",title)));
+    }
+    @Transactional
+    @Override
+    public Season addSeason(Season season, UUID seriesId) {
+        Series series = seriesService.findById(seriesId);
+        series.addSeason(season);
+        return save(season);
     }
 
     @Override

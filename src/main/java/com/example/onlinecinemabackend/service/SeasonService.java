@@ -13,6 +13,8 @@ public interface SeasonService extends EntityService<Season, UUID> {
 
     Season findByTitle(String title);
 
+    Season addSeason(Season season, UUID seriesId);
+
     boolean existsByTitle(String title);
 
 }

@@ -1,18 +1,25 @@
 package com.example.onlinecinemabackend.web.controller;
 
 import com.example.onlinecinemabackend.entity.Actor;
+import com.example.onlinecinemabackend.entity.Rating;
 import com.example.onlinecinemabackend.mapper.ActorMapper;
 import com.example.onlinecinemabackend.service.ActorService;
 import com.example.onlinecinemabackend.web.dto.request.PaginationRequest;
+import com.example.onlinecinemabackend.web.dto.request.UpsertActorRequest;
+import com.example.onlinecinemabackend.web.dto.request.UpsertRatingRequest;
 import com.example.onlinecinemabackend.web.dto.response.ActorResponse;
 import com.example.onlinecinemabackend.web.dto.response.ModelListResponse;
 
+import com.example.onlinecinemabackend.web.dto.response.RatingResponse;
+import jakarta.annotation.Nullable;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 @CrossOrigin
 @RestController
@@ -59,6 +66,15 @@ public class ActorController {
             );
     }
 
+    @PostMapping
+    public ResponseEntity<ActorResponse> createActor(@RequestBody UpsertActorRequest request,
+                                                     @Nullable @RequestParam List<UUID> filmsIds,
+                                                     @Nullable @RequestParam List<UUID> seriesIds
+    ){
+        Actor actor = actorService.addActor(actorMapper.upsertRequestToActor(request),filmsIds,seriesIds);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(actorMapper.actorToResponse(actor));
+    }
 
 
 }
