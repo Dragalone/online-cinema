@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,6 +61,7 @@ public class SeasonController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<SeasonResponse> createSeason(@RequestBody UpsertSeasonRequest request,
                                                        @RequestParam UUID seriesId
     ){
@@ -69,6 +71,7 @@ public class SeasonController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<SeasonResponse> createSeason(@RequestBody UpsertSeasonRequest request,
                                                        @PathVariable UUID id,
                                                        @RequestParam UUID seriesId
@@ -78,6 +81,7 @@ public class SeasonController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteSeason(@PathVariable UUID id){
         seasonService.deleteById(id);
         return ResponseEntity.noContent().build();

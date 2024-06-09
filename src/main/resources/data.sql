@@ -15,7 +15,7 @@ INSERT INTO cinema_schema.subscription(id,cost,end_date,start_date) VALUES
                                                                         ('e9281520-8791-4630-90da-81f3c47ee8e4',100.00,'2024-03-03','2024-04-01');
 
 INSERT INTO cinema_schema.app_user(id,email,"name","password",phone,subscription_id) VALUES
-                                                                                         ('014128c1-4c97-4f3c-a020-35219c85ba32','test@test.test','Ivan','123','89997776655','8f8e1169-46b8-4abd-b1af-9f2f46dad773'),
+                                                                                         ('014128c1-4c97-4f3c-a020-35219c85ba32','test@test.test','Ivan','F9pePaMg8wVAUqKu8ob66rdBlDJKdfS','89997776655','8f8e1169-46b8-4abd-b1af-9f2f46dad773'),
                                                                                          ('f3b2365f-ab4f-497a-95f7-c5ecdea68396','test1@test.test','Vlad','554','81117776655','f71b18a9-2b6a-4c1b-a915-90018739c3bf'),
                                                                                          ('ba41512c-a21b-46d5-8628-9b24eba24a12','test2@test.test','Alex','254','89227776655','e9281520-8791-4630-90da-81f3c47ee8e4');
 

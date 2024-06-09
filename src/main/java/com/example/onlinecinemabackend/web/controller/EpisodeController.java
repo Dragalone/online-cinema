@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -58,6 +59,7 @@ public class EpisodeController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<EpisodeResponse> createEpisode(@RequestBody UpsertEpisodeRequest request,
                                                          @RequestParam UUID seasonId
     ){
@@ -67,6 +69,7 @@ public class EpisodeController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<EpisodeResponse> updateEpisode(@RequestBody UpsertEpisodeRequest request,
                                                          @PathVariable UUID id,
                                                          @RequestParam UUID seasonId
@@ -75,6 +78,7 @@ public class EpisodeController {
         return ResponseEntity.ok(episodeMapper.episodeToResponse(updatedEpisode));
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteEpisode(@PathVariable UUID id){
         episodeService.deleteById(id);
         return ResponseEntity.noContent().build();

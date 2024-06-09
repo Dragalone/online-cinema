@@ -1,6 +1,8 @@
 package com.example.onlinecinemabackend.web.controller;
 
 
+import com.example.onlinecinemabackend.aop.AccessCheckType;
+import com.example.onlinecinemabackend.aop.Accessible;
 import com.example.onlinecinemabackend.entity.RoleType;
 import com.example.onlinecinemabackend.entity.User;
 import com.example.onlinecinemabackend.exception.AlreadyExistsException;
@@ -16,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.MessageFormat;
@@ -32,12 +35,14 @@ public class UserController {
     private final UserMapper userMapper;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<UserResponse> getById(@PathVariable UUID id){
         return  ResponseEntity.ok(
                 userMapper.userToResponse(userService.findById(id))
         );
     }
     @GetMapping("/name")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<UserResponse> getByName(@Valid PaginationRequest request, @RequestParam String name){
         return  ResponseEntity.ok(
                 userMapper.userToResponse(userService.findByName(name))
@@ -45,6 +50,7 @@ public class UserController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<UserResponse> createUser(@RequestBody UpsertUserRequest request, @RequestParam RoleType role) {
         if (userService.existsByEmail(request.getEmail())) {
             throw new AlreadyExistsException(MessageFormat.format("User with email {0} already exists!", request.getEmail()));
@@ -59,5 +65,13 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userMapper.userToResponse(userService.save(newUser)));
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
+    public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
+        userService.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

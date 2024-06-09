@@ -10,6 +10,7 @@ import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +21,10 @@ import java.util.UUID;
 @Service
 @Slf4j
 public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepository> implements UserService {
-
-    public UserServiceImpl(UserRepository repository) {
+    private final PasswordEncoder passwordEncoder;
+    public UserServiceImpl(UserRepository repository, PasswordEncoder passwordEncoder) {
         super(repository);
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -68,5 +70,11 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
     @Override
     public boolean existsByEmail(String email) {
         return repository.existsByEmail(email);
+    }
+
+    @Override
+    public User save(User entity) {
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return super.save(entity);
     }
 }

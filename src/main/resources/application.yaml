@@ -1,7 +1,7 @@
 spring:
   jpa:
     generate-ddl: true
-    defer-datasource-initialization: true
+#    defer-datasource-initialization: true
   datasource:
     url: jdbc:postgresql://localhost:5432/cinema_db
     username: vladimir
@@ -10,10 +10,10 @@ spring:
       schema: cinema_schema
       connection-init-sql: CREATE SCHEMA IF NOT EXISTS cinema_schema
       connection-timeout: 10000
-  sql:
-    init:
-      mode:
-        always
+#  sql:
+#    init:
+#      mode:
+#        always
 server:
   port: 8080
 

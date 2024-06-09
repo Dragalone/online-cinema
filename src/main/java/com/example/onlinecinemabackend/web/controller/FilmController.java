@@ -22,6 +22,7 @@ import org.springframework.data.domain.Page;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -64,6 +65,7 @@ public class FilmController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<FilmResponse> createFilm(@RequestBody UpsertFilmRequest request,
                                                    @RequestParam List<UUID> genresIds,
                                                    @RequestParam List<UUID> actorsIds,
@@ -75,6 +77,7 @@ public class FilmController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<FilmResponse> updateFilm(@RequestBody UpsertFilmRequest request,
                                                    @PathVariable UUID id,
                                                    @RequestParam List<UUID> genresIds,
@@ -85,6 +88,7 @@ public class FilmController {
         return ResponseEntity.ok(filmMapper.filmToResponse(updatedFilm));
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteFilm(@PathVariable UUID id){
         filmService.deleteById(id);
         return ResponseEntity.noContent().build();

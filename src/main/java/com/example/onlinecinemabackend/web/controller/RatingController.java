@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -81,6 +82,7 @@ public class RatingController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<RatingResponse> createRating(@RequestBody UpsertRatingRequest request,
                                                      @RequestParam UUID userId,
                                                      @Nullable @RequestParam UUID filmId,
@@ -91,6 +93,7 @@ public class RatingController {
                 .body(ratingMapper.ratingToResponse(rating));
     }
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<RatingResponse> updateRating(@RequestBody UpsertRatingRequest request,
                                                        @PathVariable UUID id,
                                                        @RequestParam UUID userId,
@@ -102,6 +105,7 @@ public class RatingController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteRating(@PathVariable UUID id){
         ratingService.deleteById(id);
         return ResponseEntity.noContent().build();

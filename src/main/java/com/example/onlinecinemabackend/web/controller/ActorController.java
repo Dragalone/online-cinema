@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,6 +68,7 @@ public class ActorController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<ActorResponse> createActor(@RequestBody UpsertActorRequest request,
                                                      @Nullable @RequestParam List<UUID> filmsIds,
                                                      @Nullable @RequestParam List<UUID> seriesIds
@@ -77,6 +79,7 @@ public class ActorController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<ActorResponse> updateActor(@RequestBody UpsertActorRequest request,
                                                      @PathVariable UUID id,
                                                      @RequestParam(required = false) List<UUID> filmsIds,
@@ -87,6 +90,7 @@ public class ActorController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteActor(@PathVariable UUID id){
         actorService.deleteById(id);
         return ResponseEntity.noContent().build();

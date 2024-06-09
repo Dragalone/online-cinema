@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -62,6 +63,7 @@ public class GenreController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<GenreResponse> createGenre(@RequestBody UpsertGenreRequest request,
                                                      @Nullable @RequestParam List<UUID> filmsIds,
                                                      @Nullable @RequestParam List<UUID> seriesIds
@@ -72,6 +74,7 @@ public class GenreController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<GenreResponse> updateGenre(@RequestBody UpsertGenreRequest request,
                                                      @PathVariable UUID id,
                                                      @RequestParam(required = false) List<UUID> filmsIds,
@@ -82,6 +85,7 @@ public class GenreController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteGenre(@PathVariable UUID id){
         genreService.deleteById(id);
         return ResponseEntity.noContent().build();

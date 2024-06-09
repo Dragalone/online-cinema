@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -72,6 +73,7 @@ public class DirectorController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<DirectorResponse> createDirector(@RequestBody UpsertDirectorRequest request,
                                                            @Nullable @RequestParam List<UUID> filmsIds,
                                                            @Nullable @RequestParam List<UUID> seriesIds
@@ -82,6 +84,7 @@ public class DirectorController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<DirectorResponse> updateDirector(@RequestBody UpsertDirectorRequest request,
                                                            @PathVariable UUID id,
                                                            @RequestParam(required = false) List<UUID> filmsIds,
@@ -92,6 +95,7 @@ public class DirectorController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteDirector(@PathVariable UUID id){
         directorService.deleteById(id);
         return ResponseEntity.noContent().build();
