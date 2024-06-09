@@ -15,6 +15,8 @@ public interface SeasonService extends EntityService<Season, UUID> {
 
     Season addSeason(Season season, UUID seriesId);
 
+    Season updateSeason(Season season,UUID id, UUID seriesId);
+
     boolean existsByTitle(String title);
 
 }

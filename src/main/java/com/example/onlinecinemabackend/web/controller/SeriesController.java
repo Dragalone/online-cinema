@@ -69,4 +69,14 @@ public class SeriesController {
                 .body(seriesMapper.seriesToResponse(series));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<SeriesResponse> updateSeries(@RequestBody UpsertSeriesRequest request,
+                                                       @PathVariable UUID id,
+                                                       @RequestParam List<UUID> genresIds,
+                                                       @RequestParam List<UUID> actorsIds,
+                                                       @RequestParam UUID directorId
+    ){
+        Series updatedSeries = seriesService.updateSeries(seriesMapper.upsertRequestToSeries(request),id,actorsIds,genresIds,directorId);
+        return ResponseEntity.ok(seriesMapper.seriesToResponse(updatedSeries));
+    }
 }

@@ -13,5 +13,8 @@ public interface  DirectorService extends EntityService<Director, UUID> {
     Page<Director> findAllByName(String name, Pageable pageable);
 
     public Director addDirector(Director director, List<UUID> filmsIds, List<UUID> seriesIds);
+
+    public Director updateDirector(Director director, UUID id, List<UUID> filmsIds, List<UUID> seriesIds);
+
     boolean existsByName(String name);
 }

@@ -67,4 +67,13 @@ public class SeasonController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(seasonMapper.seasonToResponse(season));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SeasonResponse> createSeason(@RequestBody UpsertSeasonRequest request,
+                                                       @PathVariable UUID id,
+                                                       @RequestParam UUID seriesId
+    ){
+        Season updatedSeason = seasonService.updateSeason(seasonMapper.upsertRequestToSeason(request),id,seriesId);
+        return ResponseEntity.ok(seasonMapper.seasonToResponse(updatedSeason));
+    }
 }

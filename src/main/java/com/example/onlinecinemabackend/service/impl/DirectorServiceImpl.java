@@ -88,6 +88,27 @@ public class DirectorServiceImpl extends AbstractEntityService<Director, UUID, D
         director.setSeriesList(series);
         return save(director);
     }
+    @Transactional
+    @Override
+    public Director updateDirector(Director director, UUID id, List<UUID> filmsIds, List<UUID> seriesIds) {
+
+        if(filmsIds != null) {
+            List<Film> films = new ArrayList<>();
+            for (var filmId : filmsIds) {
+                films.add(filmService.findById(filmId));
+            }
+            director.setFilms(films);
+        }
+
+        if (seriesIds != null) {
+            List<Series> series = new ArrayList<>();
+            for (var seriesId : seriesIds) {
+                series.add(seriesService.findById(seriesId));
+            }
+            director.setSeriesList(series);
+        }
+        return update(id,director);
+    }
 
     @Override
     public boolean existsByName(String name) {

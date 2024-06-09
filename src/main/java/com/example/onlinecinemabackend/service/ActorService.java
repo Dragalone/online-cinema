@@ -22,4 +22,6 @@ public interface ActorService extends EntityService<Actor, UUID> {
     boolean existsByName(String name);
 
     public Actor addActor(Actor actor, List<UUID> filmsIds, List<UUID> seriesIds);
+
+    public Actor updateActor(Actor actor,UUID id, List<UUID> filmsIds, List<UUID> seriesIds);
 }

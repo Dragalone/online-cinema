@@ -70,4 +70,14 @@ public class GenreController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(genreMapper.genreToResponse(genre));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<GenreResponse> updateGenre(@RequestBody UpsertGenreRequest request,
+                                                     @PathVariable UUID id,
+                                                     @RequestParam(required = false) List<UUID> filmsIds,
+                                                     @RequestParam(required = false) List<UUID> seriesIds
+    ){
+        Genre updatedGenre = genreService.updateGenre(genreMapper.upsertRequestToGenre(request),id,filmsIds,seriesIds);
+        return ResponseEntity.ok(genreMapper.genreToResponse(updatedGenre));
+    }
 }

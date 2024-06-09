@@ -81,4 +81,14 @@ public class DirectorController {
                 .body(directorMapper.directorToResponse(director));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<DirectorResponse> updateDirector(@RequestBody UpsertDirectorRequest request,
+                                                           @PathVariable UUID id,
+                                                           @RequestParam(required = false) List<UUID> filmsIds,
+                                                           @RequestParam(required = false) List<UUID> seriesIds
+    ){
+        Director updatedDirector = directorService.updateDirector(directorMapper.upsertRequestToDirector(request),id, filmsIds, seriesIds);
+        return ResponseEntity.ok(directorMapper.directorToResponse(updatedDirector));
+    }
+
 }

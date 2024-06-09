@@ -100,6 +100,7 @@ public class FilmServiceImpl extends AbstractEntityService<Film, UUID, FilmRepos
         if (directorId != null){
             film.setDirector(directorService.findById(directorId));
         }
+
         return update(id, film);
     }
 

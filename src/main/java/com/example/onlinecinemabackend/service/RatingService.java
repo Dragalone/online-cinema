@@ -18,6 +18,8 @@ public interface RatingService extends EntityService<Rating, UUID> {
     Page<Rating> findAllBySeries_Id(UUID seriesId, Pageable pageable);
     Rating addRating(Rating rating, UUID userId, UUID filmId, UUID seriesId);
 
+    Rating updateRating(Rating rating,UUID id, UUID userId, UUID filmId, UUID seriesId);
+
     Double averageFilmRating(UUID filmId);
 
     Double averageSeriesRating(UUID seriesId);

@@ -88,6 +88,30 @@ public class SeriesServiceImpl extends AbstractEntityService<Series, UUID, Serie
         series.setDirector(director);
         return save(series);
     }
+    @Transactional
+    @Override
+    public Series updateSeries(Series series, UUID id, List<UUID> actorsIds, List<UUID> genresIds, UUID directorId) {
+       if (actorsIds != null){
+           Set<Actor> actors = new HashSet<>();
+           for(var actorId : actorsIds){
+               actors.add(actorService.findById(actorId));
+           }
+           series.setActors(actors);
+       }
+       if (genresIds != null){
+           Set<Genre> genres = new HashSet<>();
+           for(var genreId : genresIds){
+               genres.add(genreService.findById(genreId));
+           }
+           series.setGenres(genres);
+       }
+
+       if (directorId != null){
+           Director director = directorService.findById(directorId);
+           series.setDirector(director);
+       }
+        return update(id, series);
+    }
 
 
     @Override

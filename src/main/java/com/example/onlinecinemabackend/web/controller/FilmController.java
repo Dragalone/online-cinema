@@ -74,4 +74,15 @@ public class FilmController {
                 .body(filmMapper.filmToResponse(film));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<FilmResponse> updateFilm(@RequestBody UpsertFilmRequest request,
+                                                   @PathVariable UUID id,
+                                                   @RequestParam List<UUID> genresIds,
+                                                   @RequestParam List<UUID> actorsIds,
+                                                   @RequestParam UUID directorId
+    ){
+        Film updatedFilm = filmService.updateFilm(filmMapper.upsertRequestToFilm(request),id,genresIds,actorsIds,directorId);
+        return ResponseEntity.ok(filmMapper.filmToResponse(updatedFilm));
+    }
+
 }

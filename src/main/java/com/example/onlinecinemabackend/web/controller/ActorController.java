@@ -76,5 +76,14 @@ public class ActorController {
                 .body(actorMapper.actorToResponse(actor));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ActorResponse> updateActor(@RequestBody UpsertActorRequest request,
+                                                     @PathVariable UUID id,
+                                                     @RequestParam(required = false) List<UUID> filmsIds,
+                                                     @RequestParam(required = false) List<UUID> seriesIds
+    ){
+        Actor updatedActor = actorService.updateActor(actorMapper.upsertRequestToActor(request),id,filmsIds,seriesIds);
+        return ResponseEntity.ok(actorMapper.actorToResponse(updatedActor));
+    }
 
 }

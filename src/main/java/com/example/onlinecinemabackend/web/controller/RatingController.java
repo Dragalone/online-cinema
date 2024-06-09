@@ -90,4 +90,14 @@ public class RatingController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(ratingMapper.ratingToResponse(rating));
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<RatingResponse> updateRating(@RequestBody UpsertRatingRequest request,
+                                                       @PathVariable UUID id,
+                                                       @RequestParam UUID userId,
+                                                       @Nullable @RequestParam UUID filmId,
+                                                       @Nullable @RequestParam UUID seriesId
+    ){
+        Rating updatedRating = ratingService.updateRating(ratingMapper.upsertRequestToRating(request),id,userId,filmId,seriesId);
+        return ResponseEntity.ok(ratingMapper.ratingToResponse(updatedRating));
+    }
 }

@@ -14,6 +14,8 @@ public interface EpisodeService extends EntityService<Episode, UUID> {
 
     Episode addEpisode(Episode episode, UUID seasonId);
 
+    Episode updateEpisode(Episode episode, UUID id, UUID seasonId);
+
     boolean existsByTitle(String title);
 
 }

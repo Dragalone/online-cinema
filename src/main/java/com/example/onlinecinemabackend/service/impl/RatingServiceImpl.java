@@ -43,13 +43,13 @@ public class RatingServiceImpl extends AbstractEntityService<Rating, UUID, Ratin
     @Transactional
     public Rating addRating(Rating rating, UUID userId, UUID filmId, UUID seriesId) {
         User author = userService.findById(userId);
+        author.addRating(rating);
         Film film = null;
         Series series = null;
         if (filmId != null)
             film = filmService.findById(filmId);
         if (seriesId != null)
             series = seriesService.findById(seriesId);
-        author.addRating(rating);
         if (film != null) {
             film.addRating(rating);
         }
@@ -57,6 +57,28 @@ public class RatingServiceImpl extends AbstractEntityService<Rating, UUID, Ratin
             series.addRating(rating);
         }
         return save(rating);
+    }
+    @Transactional
+    @Override
+    public Rating updateRating(Rating rating, UUID id, UUID userId, UUID filmId, UUID seriesId) {
+        if (userId != null){
+            User author = userService.findById(userId);
+            author.addRating(rating);
+        }
+
+        Film film = null;
+        Series series = null;
+        if (filmId != null)
+            film = filmService.findById(filmId);
+        if (seriesId != null)
+            series = seriesService.findById(seriesId);
+        if (film != null) {
+            film.addRating(rating);
+        }
+        if (series != null){
+            series.addRating(rating);
+        }
+        return update(id, rating);
     }
 
     @Override

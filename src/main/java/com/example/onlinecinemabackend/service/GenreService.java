@@ -13,5 +13,7 @@ public interface GenreService extends EntityService<Genre, UUID> {
 
     Genre addGenre(Genre genre, List<UUID> filmIds, List<UUID> seriesIds);
 
+    Genre updateGenre(Genre genre,UUID id, List<UUID> filmIds, List<UUID> seriesIds);
+
     boolean existsByName(String name);
 }

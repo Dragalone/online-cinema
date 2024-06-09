@@ -12,6 +12,7 @@ import com.example.onlinecinemabackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 @Service
@@ -39,11 +40,20 @@ public class SubscriptionServiceImpl extends AbstractEntityService<Subscription,
         }
         return oldEntity;
     }
-
+    @Transactional
     @Override
     public Subscription addSubscription(Subscription subscription, UUID userId) {
         User user = userService.findById(userId);
         user.setSubscription(subscription);
         return save(subscription);
+    }
+    @Transactional
+    @Override
+    public Subscription updateSubscription(Subscription subscription, UUID id, UUID userId) {
+        if (userId != null){
+            User user = userService.findById(userId);
+            user.setSubscription(subscription);
+        }
+        return update(id, subscription);
     }
 }

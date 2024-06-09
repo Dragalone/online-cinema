@@ -78,6 +78,26 @@ public class ActorServiceImpl extends AbstractEntityService<Actor, UUID, ActorRe
         return save(actor);
     }
 
+    @Transactional
+    @Override
+    public Actor updateActor(Actor actor, UUID id, List<UUID> filmsIds, List<UUID> seriesIds) {
+        if (filmsIds != null){
+            Set<Film> films = new HashSet<>();
+            for(var filmId : filmsIds){
+                films.add(filmService.findById(filmId));
+            }
+            actor.setFilms(films);
+        }
+        if (seriesIds != null){
+            Set<Series> series = new HashSet<>();
+            for(var seriesId : seriesIds){
+                series.add(seriesService.findById(seriesId));
+            }
+            actor.setSeriesList(series);
+        }
+        return update(id,actor);
+    }
+
     @Override
     public Page<Actor> findAllByName(String name, Pageable pageable) {
         return repository.findAllByName(name, pageable);

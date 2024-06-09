@@ -61,6 +61,15 @@ public class EpisodeServiceImpl extends AbstractEntityService<Episode, UUID, Epi
         season.addEpisode(episode);
         return save(episode);
     }
+    @Transactional
+    @Override
+    public Episode updateEpisode(Episode episode, UUID id, UUID seasonId) {
+        if (seasonId != null){
+            Season season = seasonService.findById(seasonId);
+            episode.setSeason(season);
+        }
+        return update(id, episode);
+    }
 
     @Override
     public boolean existsByTitle(String title) {

@@ -18,12 +18,9 @@ public interface SeriesService extends EntityService<Series, UUID> {
 
     Series addSeries(Series series, List<UUID> actorsIds, List<UUID> genresIds, UUID directorId);
 
-    Series findByTitle(String title);
+    Series updateSeries(Series series,UUID id, List<UUID> actorsIds, List<UUID> genresIds, UUID directorId);
 
-//    Page<Series> findAllByActors_IdIn(Collection<UUID> actors_id, Pageable pageable);
-//    Page<Series> findAllByGenres_IdIn(Collection<UUID> genres_id, Pageable pageable);
-//
-//    Page<Series> findAllByDirectorId(UUID directorId, Pageable pageable);
+    Series findByTitle(String title);
 
     boolean existsByTitle(String title);
 

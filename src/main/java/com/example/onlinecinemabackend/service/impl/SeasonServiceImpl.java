@@ -68,6 +68,15 @@ public class SeasonServiceImpl extends AbstractEntityService<Season, UUID, Seaso
         series.addSeason(season);
         return save(season);
     }
+    @Transactional
+    @Override
+    public Season updateSeason(Season season, UUID id, UUID seriesId) {
+        if (seriesId!=null){
+            Series series = seriesService.findById(seriesId);
+            season.setSeries(series);
+        }
+        return update(id, season);
+    }
 
     @Override
     public boolean existsByTitle(String title) {

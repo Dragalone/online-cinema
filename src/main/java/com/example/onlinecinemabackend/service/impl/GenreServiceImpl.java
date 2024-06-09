@@ -74,6 +74,26 @@ public class GenreServiceImpl extends AbstractEntityService<Genre, UUID, GenreRe
         genre.setSeriesList(series);
         return save(genre);
     }
+    @Transactional
+    @Override
+    public Genre updateGenre(Genre genre, UUID id, List<UUID> filmIds, List<UUID> seriesIds) {
+        if (filmIds != null) {
+            Set<Film> films = new HashSet<>();
+            for (var filmId : filmIds) {
+                films.add(filmService.findById(filmId));
+            }
+            genre.setFilms(films);
+        }
+        if (seriesIds != null) {
+            Set<Series> series = new HashSet<>();
+            for (var seriesId : seriesIds) {
+                series.add(seriesService.findById(seriesId));
+            }
+            genre.setSeriesList(series);
+        }
+        return update(id, genre);
+    }
+
     @Override
     public boolean existsByName(String name) {
         return repository.existsByName(name);

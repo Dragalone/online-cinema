@@ -66,4 +66,13 @@ public class EpisodeController {
                 .body(episodeMapper.episodeToResponse(episode));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EpisodeResponse> updateEpisode(@RequestBody UpsertEpisodeRequest request,
+                                                         @PathVariable UUID id,
+                                                         @RequestParam UUID seasonId
+    ){
+        Episode updatedEpisode = episodeService.updateEpisode(episodeMapper.upsertRequestToEpisode(request),id,seasonId);
+        return ResponseEntity.ok(episodeMapper.episodeToResponse(updatedEpisode));
+    }
+
 }
