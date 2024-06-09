@@ -100,4 +100,10 @@ public class RatingController {
         Rating updatedRating = ratingService.updateRating(ratingMapper.upsertRequestToRating(request),id,userId,filmId,seriesId);
         return ResponseEntity.ok(ratingMapper.ratingToResponse(updatedRating));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRating(@PathVariable UUID id){
+        ratingService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

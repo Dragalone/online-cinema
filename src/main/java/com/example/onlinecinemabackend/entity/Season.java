@@ -36,7 +36,7 @@ public class Season {
     @ToString.Exclude
     private Series series;
 
-    @OneToMany(mappedBy = "season", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "season", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Episode> episodes = new ArrayList<>();
 

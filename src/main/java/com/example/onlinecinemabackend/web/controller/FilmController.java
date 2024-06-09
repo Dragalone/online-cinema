@@ -84,5 +84,9 @@ public class FilmController {
         Film updatedFilm = filmService.updateFilm(filmMapper.upsertRequestToFilm(request),id,genresIds,actorsIds,directorId);
         return ResponseEntity.ok(filmMapper.filmToResponse(updatedFilm));
     }
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFilm(@PathVariable UUID id){
+        filmService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

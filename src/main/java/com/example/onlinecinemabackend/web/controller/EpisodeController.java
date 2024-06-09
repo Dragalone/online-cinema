@@ -74,5 +74,9 @@ public class EpisodeController {
         Episode updatedEpisode = episodeService.updateEpisode(episodeMapper.upsertRequestToEpisode(request),id,seasonId);
         return ResponseEntity.ok(episodeMapper.episodeToResponse(updatedEpisode));
     }
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEpisode(@PathVariable UUID id){
+        episodeService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

@@ -91,4 +91,9 @@ public class DirectorController {
         return ResponseEntity.ok(directorMapper.directorToResponse(updatedDirector));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDirector(@PathVariable UUID id){
+        directorService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

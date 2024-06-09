@@ -80,4 +80,10 @@ public class GenreController {
         Genre updatedGenre = genreService.updateGenre(genreMapper.upsertRequestToGenre(request),id,filmsIds,seriesIds);
         return ResponseEntity.ok(genreMapper.genreToResponse(updatedGenre));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGenre(@PathVariable UUID id){
+        genreService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

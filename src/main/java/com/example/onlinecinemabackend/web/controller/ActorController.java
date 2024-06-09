@@ -86,4 +86,10 @@ public class ActorController {
         return ResponseEntity.ok(actorMapper.actorToResponse(updatedActor));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteActor(@PathVariable UUID id){
+        actorService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

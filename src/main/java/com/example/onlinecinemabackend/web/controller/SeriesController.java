@@ -79,4 +79,10 @@ public class SeriesController {
         Series updatedSeries = seriesService.updateSeries(seriesMapper.upsertRequestToSeries(request),id,actorsIds,genresIds,directorId);
         return ResponseEntity.ok(seriesMapper.seriesToResponse(updatedSeries));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSeries(@PathVariable UUID id){
+        seriesService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

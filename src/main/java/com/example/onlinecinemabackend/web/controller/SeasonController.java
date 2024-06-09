@@ -76,4 +76,10 @@ public class SeasonController {
         Season updatedSeason = seasonService.updateSeason(seasonMapper.upsertRequestToSeason(request),id,seriesId);
         return ResponseEntity.ok(seasonMapper.seasonToResponse(updatedSeason));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSeason(@PathVariable UUID id){
+        seasonService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

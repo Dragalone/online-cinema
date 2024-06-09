@@ -30,7 +30,7 @@ public class Director {
     @Column(length = 1000)
     private String information;
 
-    @OneToMany(mappedBy = "director", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "director", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Series> seriesList = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class Director {
         seriesList.add(series);
     }
 
-    @OneToMany(mappedBy = "director", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "director", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Film> films = new ArrayList<>();
 

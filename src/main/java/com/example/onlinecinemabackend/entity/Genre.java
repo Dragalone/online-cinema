@@ -21,7 +21,7 @@ public class Genre {
     @Column(nullable = false, length =   127)
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name="series_genre",
             joinColumns=  @JoinColumn(name="genre_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="series_id", referencedColumnName="id"))
@@ -32,7 +32,7 @@ public class Genre {
         seriesList.add(series);
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name="film_genre",
             joinColumns=  @JoinColumn(name="genre_id", referencedColumnName="id"),
             inverseJoinColumns= @JoinColumn(name="film_id", referencedColumnName="id"))

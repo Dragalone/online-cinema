@@ -37,7 +37,7 @@ public class Film {
     @JoinColumn(name = "director_id")
     private Director director;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="film_genre",
             joinColumns= @JoinColumn(name="film_id", referencedColumnName="id"),
             inverseJoinColumns=  @JoinColumn(name="genre_id", referencedColumnName="id"))
@@ -48,7 +48,7 @@ public class Film {
         genre.getFilms().add(this);
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="film_actors",
             joinColumns= @JoinColumn(name="film_id", referencedColumnName="id"),
             inverseJoinColumns=  @JoinColumn(name="actor_id", referencedColumnName="id"))

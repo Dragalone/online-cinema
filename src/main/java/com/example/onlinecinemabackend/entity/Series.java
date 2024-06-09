@@ -45,7 +45,7 @@ public class Series {
     @ToString.Exclude
     private Set<Genre> genres = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="series_actors",
             joinColumns= @JoinColumn(name="series_id", referencedColumnName="id"),
             inverseJoinColumns=  @JoinColumn(name="actor_id", referencedColumnName="id"))
