@@ -34,4 +34,6 @@ public class SeriesResponse {
     private List<SeasonResponse> seasons = new ArrayList<>();
 
     private Double averageRating;
+
+    private String previewImageURL;
 }

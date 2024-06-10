@@ -21,4 +21,5 @@ public class EpisodeResponse {
 
     private String resourceLink;
 
+    private String previewImageURL;
 }

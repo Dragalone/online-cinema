@@ -31,5 +31,7 @@ public class BriefSeriesResponse {
     private Integer seasonsCount;
 
     private Double averageRating;
+
+    private String previewImageURL;
 }
 

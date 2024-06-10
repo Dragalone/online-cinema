@@ -30,6 +30,8 @@ public class Director {
     @Column(length = 1000)
     private String information;
 
+    private String directorImageURL;
+
     @OneToMany(mappedBy = "director", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Series> seriesList = new ArrayList<>();

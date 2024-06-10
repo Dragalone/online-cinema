@@ -32,6 +32,7 @@ public class Genre {
         seriesList.add(series);
     }
 
+
     @ManyToMany
     @JoinTable(name="film_genre",
             joinColumns=  @JoinColumn(name="genre_id", referencedColumnName="id"),

@@ -34,4 +34,6 @@ public class BriefFilmResponse {
     private Integer ratingsCount;
 
     private Double averageRating;
+
+    private String previewImageURL;
 }

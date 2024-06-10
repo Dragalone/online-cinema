@@ -25,6 +25,8 @@ public class Episode {
 
     private Instant releaseDate;
 
+    private String previewImageURL;
+
     @Column(length = 1000)
     private String description;
 

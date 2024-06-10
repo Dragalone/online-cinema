@@ -22,4 +22,6 @@ public class UserResponse {
 
     private SubscriptionResponse subscription;
 
+    private String profileImageURL;
+
 }

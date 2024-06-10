@@ -23,4 +23,6 @@ public class SeasonResponse {
     private Instant releaseDate;
 
     private List<EpisodeResponse> episodes = new ArrayList<>();
+
+    private String previewImageURL;
 }

@@ -36,6 +36,8 @@ public class Season {
     @ToString.Exclude
     private Series series;
 
+    private String previewImageURL;
+
     @OneToMany(mappedBy = "season", fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<Episode> episodes = new ArrayList<>();

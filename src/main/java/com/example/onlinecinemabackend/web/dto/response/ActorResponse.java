@@ -19,4 +19,6 @@ public class ActorResponse {
     private Instant birthdate;
 
     private String information;
+
+    private String actorImageURL;
 }

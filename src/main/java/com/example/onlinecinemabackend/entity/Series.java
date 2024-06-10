@@ -52,6 +52,7 @@ public class Series {
     @ToString.Exclude
     private Set<Actor> actors = new HashSet<>();
 
+    private String previewImageURL;
 
     @OneToMany(mappedBy = "series", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude

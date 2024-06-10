@@ -28,6 +28,8 @@ public class Film {
     @Column(length = 1000)
     private String description;
 
+    private String previewImageURL;
+
     private String resourceLink;
 
     @Column(precision = 9, scale = 2)
@@ -62,6 +64,8 @@ public class Film {
     @OneToMany(mappedBy = "film", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Rating> ratings = new ArrayList<>();
+
+
 
     public void addRating(Rating rating){
         rating.setFilm(this);

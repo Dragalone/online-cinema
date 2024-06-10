@@ -35,6 +35,8 @@ public class Actor {
     @ToString.Exclude
     private Set<Series> seriesList = new HashSet<>();
 
+    private String actorImageURL;
+
     public void addSeries(Series series) {
         seriesList.add(series);
     }

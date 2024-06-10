@@ -30,6 +30,8 @@ public class User {
     @Column(nullable = false)
     private String phone;
 
+    private String profileImageURL;
+
     @OneToOne
     @JoinColumn(name = "subscription_id")
     @ToString.Exclude

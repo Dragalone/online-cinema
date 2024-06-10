@@ -36,4 +36,6 @@ public class FilmResponse {
     private List<RatingResponse> ratings = new ArrayList<>();
 
     private Double averageRating;
+
+    private String previewImageURL;
 }

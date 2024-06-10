@@ -32,12 +32,6 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         http
-                .authorizeHttpRequests((auth) ->
-                        auth
-                                .requestMatchers(HttpMethod.POST, "/api/v1/user/**").permitAll()
-                                .requestMatchers("/api/v1/public/**").permitAll()
-                                .anyRequest().authenticated()
-                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
