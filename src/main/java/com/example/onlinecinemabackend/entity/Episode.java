@@ -27,7 +27,7 @@ public class Episode {
 
     private String previewImageURL;
 
-    @Column(length = 1000)
+    @Column(length = 5000)
     private String description;
 
     private String resourceLink;

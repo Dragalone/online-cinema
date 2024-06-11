@@ -30,17 +30,13 @@ public class FilesController {
 
     @PostMapping("/upload")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_MODERATOR')")
-    public ResponseEntity<MessageResponse> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<FileInfoResponse> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
-        try {
-            storageService.save(file);
-
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
-            return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
-        } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
-        }
+        storageService.save(file);
+        String filename = file.getOriginalFilename();
+        String url = MvcUriComponentsBuilder.fromMethodName(FilesController.class, "getFile", file.getOriginalFilename()).build().toString();
+        FileInfoResponse fileInfo = new FileInfoResponse(filename, url);
+        return ResponseEntity.ok().body(fileInfo);
     }
 
     @GetMapping

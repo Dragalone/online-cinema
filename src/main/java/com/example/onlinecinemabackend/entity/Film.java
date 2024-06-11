@@ -25,7 +25,7 @@ public class Film {
 
     private Instant releaseDate;
 
-    @Column(length = 1000)
+    @Column(length = 5000)
     private String description;
 
     private String previewImageURL;

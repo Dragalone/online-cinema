@@ -25,7 +25,7 @@ public class Actor {
 
     private Instant birthdate;
 
-    @Column(length = 1000)
+    @Column(length = 5000)
     private String information;
 
     @ManyToMany(fetch = FetchType.LAZY)
