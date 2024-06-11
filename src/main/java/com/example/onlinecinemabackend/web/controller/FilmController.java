@@ -71,7 +71,7 @@ public class FilmController {
                                                    @RequestParam List<UUID> actorsIds,
                                                    @RequestParam UUID directorId
     ){
-        Film film = filmService.addFilm(filmMapper.upsertRequestToFilm(request),genresIds,actorsIds,directorId);
+        Film film = filmService.addFilm(filmMapper.upsertRequestToFilm(request),actorsIds,genresIds,directorId);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(filmMapper.filmToResponse(film));
     }
@@ -84,7 +84,7 @@ public class FilmController {
                                                    @RequestParam List<UUID> actorsIds,
                                                    @RequestParam UUID directorId
     ){
-        Film updatedFilm = filmService.updateFilm(filmMapper.upsertRequestToFilm(request),id,genresIds,actorsIds,directorId);
+        Film updatedFilm = filmService.updateFilm(filmMapper.upsertRequestToFilm(request),id,actorsIds,genresIds,directorId);
         return ResponseEntity.ok(filmMapper.filmToResponse(updatedFilm));
     }
     @DeleteMapping("/{id}")

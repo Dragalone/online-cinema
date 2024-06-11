@@ -86,13 +86,14 @@ public class FilmServiceImpl extends AbstractEntityService<Film, UUID, FilmRepos
         Set<Actor> actors = new HashSet<>();
         Set<Genre> genres = new HashSet<>();
         if (actorsIds != null){
-            for (var actorId : actorsIds){
-                actors.add(actorService.findById(actorId));
+            for (UUID actorId : actorsIds){
+                Actor actor = actorService.findById(actorId);
+                actors.add(actor);
             }
         }
         film.setActors(actors);
         if (genresIds != null){
-            for (var genreId : genresIds){
+            for (UUID genreId : genresIds){
                 genres.add(genreService.findById(genreId));
             }
         }
