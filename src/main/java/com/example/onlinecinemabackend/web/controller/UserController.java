@@ -66,7 +66,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userMapper.userToResponse(userService.save(newUser)));
     }
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
+    public ResponseEntity<UserResponse> updateUser(@RequestBody UpsertUserRequest request, @PathVariable UUID id) {
+        User updatedUser = userService.update(id, userMapper.upsertRequestToUser(request));
 
+        return ResponseEntity.ok(userMapper.userToResponse(updatedUser));
+    }
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_MODERATOR')")
     public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
