@@ -12,8 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertEpisodeRequest {
 
-    private UUID id;
-
     private String title;
 
     private Instant releaseDate;

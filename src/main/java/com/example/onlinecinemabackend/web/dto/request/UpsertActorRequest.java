@@ -13,8 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertActorRequest {
 
-    private UUID id;
-
     @NotNull
     private String name;
 

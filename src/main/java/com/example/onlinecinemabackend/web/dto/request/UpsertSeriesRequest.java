@@ -14,8 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertSeriesRequest {
 
-    private UUID id;
-
     @NotNull
     private String title;
 

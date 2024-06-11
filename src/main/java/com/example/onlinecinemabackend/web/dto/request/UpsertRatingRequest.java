@@ -13,8 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertRatingRequest {
 
-    private UUID id;
-
     @NotNull
     private Integer rating;
 

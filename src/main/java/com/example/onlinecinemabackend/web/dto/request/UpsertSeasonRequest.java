@@ -14,8 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertSeasonRequest {
 
-    private UUID id;
-
     @NotNull
     private String title;
 

@@ -13,8 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertSubscriptionRequest {
 
-    private UUID id;
-
     private Instant startDate;
 
     private Instant endDate;

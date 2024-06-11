@@ -13,8 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpsertGenreRequest {
 
-    private UUID id;
-
     @NotNull
     private String name;
 
