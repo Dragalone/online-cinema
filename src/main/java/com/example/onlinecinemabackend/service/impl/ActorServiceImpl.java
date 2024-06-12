@@ -58,6 +58,9 @@ public class ActorServiceImpl extends AbstractEntityService<Actor, UUID, ActorRe
         if (newEntity.getBirthdate() != null){
             oldEntity.setBirthdate(newEntity.getBirthdate());
         }
+        if (StringUtils.hasText(newEntity.getActorImageURL())){
+            oldEntity.setActorImageURL(newEntity.getActorImageURL());
+        }
         return oldEntity;
     }
 

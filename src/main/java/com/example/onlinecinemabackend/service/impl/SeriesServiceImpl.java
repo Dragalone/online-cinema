@@ -63,6 +63,9 @@ public class SeriesServiceImpl extends AbstractEntityService<Series, UUID, Serie
         if (newEntity.getReleaseDate() != null){
             oldEntity.setReleaseDate(newEntity.getReleaseDate());
         }
+        if (StringUtils.hasText(newEntity.getPreviewImageURL())){
+            oldEntity.setPreviewImageURL(newEntity.getPreviewImageURL());
+        }
         return oldEntity;
     }
 

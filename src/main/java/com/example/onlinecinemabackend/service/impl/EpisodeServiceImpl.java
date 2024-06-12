@@ -41,6 +41,9 @@ public class EpisodeServiceImpl extends AbstractEntityService<Episode, UUID, Epi
         if (newEntity.getSeason() != null){
             oldEntity.setSeason(newEntity.getSeason());
         }
+        if (StringUtils.hasText(newEntity.getPreviewImageURL())){
+            oldEntity.setPreviewImageURL(newEntity.getPreviewImageURL());
+        }
         return oldEntity;
     }
 

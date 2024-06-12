@@ -55,6 +55,9 @@ public class DirectorServiceImpl extends AbstractEntityService<Director, UUID, D
         if (newEntity.getBirthdate() != null){
             oldEntity.setBirthdate(newEntity.getBirthdate());
         }
+        if (StringUtils.hasText(newEntity.getDirectorImageURL())){
+            oldEntity.setDirectorImageURL(newEntity.getDirectorImageURL());
+        }
         return oldEntity;
     }
 

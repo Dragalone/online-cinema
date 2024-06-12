@@ -62,9 +62,13 @@ public class FilmServiceImpl extends AbstractEntityService<Film, UUID, FilmRepos
         if (StringUtils.hasText(newEntity.getResourceLink())){
             oldEntity.setResourceLink(newEntity.getResourceLink());
         }
+        if (StringUtils.hasText(newEntity.getPreviewImageURL())){
+            oldEntity.setPreviewImageURL(newEntity.getPreviewImageURL());
+        }
         if (newEntity.getReleaseDate() != null){
             oldEntity.setReleaseDate(newEntity.getReleaseDate());
         }
+
         return oldEntity;
     }
 

@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.Objects;
@@ -47,6 +48,9 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
          if (newEntity.getPhone() != null){
              oldEntity.setPhone(newEntity.getPhone());
          }
+        if (StringUtils.hasText(newEntity.getProfileImageURL())){
+            oldEntity.setProfileImageURL(newEntity.getProfileImageURL());
+        }
         return oldEntity;
     }
 
