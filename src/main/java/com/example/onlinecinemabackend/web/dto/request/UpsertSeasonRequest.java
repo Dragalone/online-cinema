@@ -21,4 +21,5 @@ public class UpsertSeasonRequest {
 
     private Instant releaseDate;
 
+    private String previewImageURL;
 }

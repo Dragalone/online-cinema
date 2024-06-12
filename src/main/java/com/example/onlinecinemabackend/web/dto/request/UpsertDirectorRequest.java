@@ -19,4 +19,6 @@ public class UpsertDirectorRequest {
     private Instant birthdate;
 
     private String information;
+
+    private String directorImageURL;
 }

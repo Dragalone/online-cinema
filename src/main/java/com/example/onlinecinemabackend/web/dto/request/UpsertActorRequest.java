@@ -19,4 +19,7 @@ public class UpsertActorRequest {
     private Instant birthdate;
 
     private String information;
+
+    private String actorImageURL;
+
 }

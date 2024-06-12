@@ -25,4 +25,6 @@ public class UpsertUserRequest {
     @NotNull
     private String phone;
 
+    private String profileImageURL;
+
 }

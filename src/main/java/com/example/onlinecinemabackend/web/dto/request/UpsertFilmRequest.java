@@ -22,4 +22,6 @@ public class UpsertFilmRequest {
 
     private String resourceLink;
 
+    private String previewImageURL;
+
 }

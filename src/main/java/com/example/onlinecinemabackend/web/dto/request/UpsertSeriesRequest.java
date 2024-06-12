@@ -23,4 +23,5 @@ public class UpsertSeriesRequest {
 
     private BigDecimal cost;
 
+    private String previewImageURL;
 }

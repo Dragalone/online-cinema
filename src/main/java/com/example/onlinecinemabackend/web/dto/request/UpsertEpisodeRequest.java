@@ -19,4 +19,7 @@ public class UpsertEpisodeRequest {
     private String description;
 
     private String resourceLink;
+
+    private String previewImageURL;
+
 }
