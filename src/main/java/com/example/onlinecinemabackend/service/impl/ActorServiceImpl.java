@@ -35,11 +35,7 @@ public class ActorServiceImpl extends AbstractEntityService<Actor, UUID, ActorRe
         this.seriesService = seriesService;
         this.filmService = filmService;
     }
-
-
-
-
-
+    
    // private final SeriesService SeriesService;
     @Override
     protected Actor updateFields(Actor oldEntity, Actor newEntity) {

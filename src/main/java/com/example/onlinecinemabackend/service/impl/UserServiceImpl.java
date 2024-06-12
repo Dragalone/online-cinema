@@ -1,6 +1,7 @@
 package com.example.onlinecinemabackend.service.impl;
 
 import com.example.onlinecinemabackend.entity.Director;
+import com.example.onlinecinemabackend.entity.Series;
 import com.example.onlinecinemabackend.entity.User;
 import com.example.onlinecinemabackend.exception.AlreadyExistsException;
 import com.example.onlinecinemabackend.exception.EntityNotFoundException;
@@ -10,6 +11,8 @@ import com.example.onlinecinemabackend.service.AbstractEntityService;
 import com.example.onlinecinemabackend.service.DirectorService;
 import com.example.onlinecinemabackend.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +33,7 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
 
     @Override
     protected User updateFields(User oldEntity, User newEntity) {
-        if (!Objects.equals(oldEntity.getName(), newEntity.getName()) && existsByName(newEntity.getName())) {
-            throw new AlreadyExistsException(
-                    MessageFormat.format("User with username {0} already exists!",  newEntity.getName())
-            );
-        } else if (!Objects.equals(oldEntity.getName(), newEntity.getName())) {
+        if (!Objects.equals(oldEntity.getName(), newEntity.getName())) {
             oldEntity.setName(newEntity.getName());
         }
 
@@ -59,7 +58,10 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
         return repository.findByName(name)
                 .orElseThrow(()-> new EntityNotFoundException(MessageFormat.format("User with name {0} not found!",name)));
     }
-
+    @Override
+    public Page<User> findAllByName(String name, Pageable pageable) {
+        return repository.findAllByName(name, pageable);
+    }
     @Override
     public User findByEmail(String email) {
         return repository.findByEmail(email)
@@ -78,6 +80,11 @@ public class UserServiceImpl extends AbstractEntityService<User, UUID, UserRepos
 
     @Override
     public User save(User entity) {
+        if (repository.existsByEmail(entity.getEmail())){
+            throw new AlreadyExistsException(
+                    MessageFormat.format("User with email {0} already exists!",  entity.getEmail())
+            );
+        }
         entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return super.save(entity);
     }
